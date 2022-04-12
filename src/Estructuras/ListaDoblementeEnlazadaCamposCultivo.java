@@ -196,11 +196,15 @@ public class ListaDoblementeEnlazadaCamposCultivo {
     public CampoCultivo buscarPorNombreCampoCultivo(String nombreCampo){
         NodoCamposCultivo auxiliar = inicio;
         NodoCamposCultivo temp=inicio;
-        while(auxiliar!=null&& !auxiliar.getCampito().getNombreCampoCultivo().equals(nombreCampo)){
+        
+        if(auxiliar.getCampito().getNombreCampoCultivo().equals(nombreCampo)){CampoCultivo campito=temp.getCampito();
+        return campito;
+        }
+        while(auxiliar != null && !auxiliar.getCampito().getNombreCampoCultivo().equals(nombreCampo)){
             temp= auxiliar;
             auxiliar = auxiliar.getNext();
         }
-        CampoCultivo campito = temp.getBack().getCampito();
+        CampoCultivo campito=temp.getNext().getCampito();
         
         return campito;
     }
@@ -208,11 +212,15 @@ public class ListaDoblementeEnlazadaCamposCultivo {
     public CampoCultivo buscarPorIDCampoCultivo(int idCampoCultivo){
         NodoCamposCultivo auxiliar = inicio;
         NodoCamposCultivo temp=inicio;
-        while(auxiliar!=null && !(auxiliar.getCampito().getId()==idCampoCultivo)){
+        
+        if(auxiliar.getCampito().getId()==idCampoCultivo){CampoCultivo campito=temp.getCampito();
+        return campito;
+        }
+        while(auxiliar != null && !(auxiliar.getCampito().getId()==idCampoCultivo)){
             temp= auxiliar;
             auxiliar = auxiliar.getNext();
         }
-        CampoCultivo campito=temp.getBack().getCampito();
+        CampoCultivo campito=temp.getNext().getCampito();
         
         return campito;
     }
@@ -228,6 +236,25 @@ public class ListaDoblementeEnlazadaCamposCultivo {
         }
     }
     
+    public boolean existe(int id){
+       boolean esta= false;
+       
+       
+       
+       if(inicio !=null){
+           if(id >= inicio.getCampito().getId() && id <= fin.getCampito().getId()){
+           NodoCamposCultivo aux= inicio;
+           
+           while(aux!=fin && aux.getCampito().getId() < id ){aux=aux.getNext();}
+           
+           esta = (aux.getCampito().getId() == id);
+       }}
+       
+       return esta; }
     
+    
+    
+    
+
 }
 
