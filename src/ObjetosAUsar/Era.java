@@ -6,7 +6,7 @@
 package ObjetosAUsar;
 
 import java.util.Random;
-
+//probando cambios
 /**
  *
  * @author alfar
@@ -239,12 +239,6 @@ public class Era {
     public void setValorMinimoparametro(int valorMinimoparametro) {
         this.valorMinimoparametro = valorMinimoparametro;
     }
-
-    @Override
-    public String toString() {
-        return "Era{" + "tiposuelo=" + tiposuelo + ", aireacion=" + aireacion + ", nivelDehumedad=" + nivelDehumedad + ", nitrogeno=" + nitrogeno + ", fosforo=" + fosforo + ", potasio=" + potasio + ", calcio=" + calcio + ", azufre=" + azufre + ", magnesio=" + magnesio + ", hierro=" + hierro + ", zinc=" + zinc + ", manganeso=" + manganeso + ", boro=" + boro + ", cobre=" + cobre + ", cloro=" + cloro + ", molibdeno=" + molibdeno + ", ph=" + ph + ", tieneMaleza=" + tieneMaleza + ", tieneHongos=" + tieneHongos + ", tieneinsectos=" + tieneinsectos + ", valorMaximoParametro=" + valorMaximoParametro + ", valorMinimoparametro=" + valorMinimoparametro + '}';
-    }
-    
     
     
     
