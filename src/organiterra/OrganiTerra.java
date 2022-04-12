@@ -42,7 +42,7 @@ public class OrganiTerra {
             try{
             opcionMainMenu=Integer.parseInt(JOptionPane.showInputDialog(""
                     + "1. Crear campo de cultivo nuevo\n"
-                    + "2. Verificar informacion de campod de cultivo \n"//aca muestra en una lista enlazada 
+                    + "2. Verificar informacion de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo\n"
                     + "4. Eliminar campo de cultivo\n"
                     + "5. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
@@ -53,7 +53,10 @@ public class OrganiTerra {
                     JOptionPane.showMessageDialog(null,"Ha elegido crear un campo de tultivo");
                     Calendar calFechacreacionTerreno = Calendar.getInstance();
                     Date dateCreacionTerreno = calFechacreacionTerreno.getTime();
+                    
                     nombreCampoCultivo = JOptionPane.showInputDialog("Digite el nombre de campo del campo cultivo");
+                    
+                    
                     cantEras=Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de Eras"));
                     CampoCultivo campitoCultivo = new CampoCultivo(nombreCampoCultivo, idCultivo, dateCreacionTerreno,cantEras);
                     idCultivo++;
@@ -89,35 +92,20 @@ public class OrganiTerra {
                     JOptionPane.showMessageDialog(null, "Ha eligido administrar campo de cultivo");
                     
                         /*
-                        En esta parte lo que hace primero es ver si la lista de campos de cultivo esta vacia,
+                        En esta parte lo que hace primero es ver si la lista de capos de cultivo esta vacia,
                         si no lo esta va a preguntar cual es el ID del campo o el nombre del campo de cultivo
                         */                    
                     if(!listaCultivos.estaVacia()){                      
-                        int selectorDeBusqueda=Integer.parseInt(JOptionPane.showInputDialog("Seleccione el campo de cultivo que desea administrar\n"
-                                + "1.Busqueda Por nombre\n"
-                                + "2.Busqueda por ID\n"));
+                        
                         boolean seleccionValida= false;
 
-                        
-                        switch (selectorDeBusqueda){
-                            case 1:
-                                String nombreBuscarCampoCultivo=JOptionPane.showInputDialog("digite el nombre del campo de cultivo");
-                                campito=listaCultivos.buscarPorNombreCampoCultivo(nombreBuscarCampoCultivo);
-                                seleccionValida = true;
+                       
+                                int idABuscarCampoCultivo=Integer.parseInt(JOptionPane.showInputDialog("Digite el ID del campo de cultivo que desea buscar"));
                                 
-                                break;
-                            case 2:
-                                int idABuscarCampoCultivo=Integer.parseInt(JOptionPane.showInputDialog("digite el ID del campo de cultivo"));
-                                campito=listaCultivos.buscarPorIDCampoCultivo(idABuscarCampoCultivo);
-                                seleccionValida= true;
                                 
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "no ha selecionado niniguna opcion valida");
-                                seleccionValida = false;
-                                
-                        }
-                        
+                                if(listaCultivos.existe(idABuscarCampoCultivo)==true){campito=listaCultivos.buscarPorIDCampoCultivo(idABuscarCampoCultivo);
+                                seleccionValida= true;}else{}
+                                              
                         /*
                         En caso de que haya encontrado un elemento de campo cultivo lo va a retornar al main class
                         para poder ser manipulado de no ser asi  va a salir al menu principal, aca mas abajo viene el menu de opciones
@@ -233,8 +221,7 @@ public class OrganiTerra {
                     
                     
                         }else{
-                            JOptionPane.showMessageDialog(null, "El campo que busca no existe\n"
-                                    + "Salir de menu de administracion ");
+                            JOptionPane.showMessageDialog(null, "El campo que busca no existe...\n");
                             
                         }
 
@@ -249,22 +236,11 @@ public class OrganiTerra {
                     JOptionPane.showMessageDialog(null, "Ha escogido eliminar un campo de cultivo");
                     if(!listaCultivos.estaVacia()){
                         JOptionPane.showMessageDialog(null, "La lista si tiene elementos");
-                        int opcionEliminarCampoCultivo=Integer.parseInt(JOptionPane.showInputDialog(""
-                            + "1.Eliminar del inicio de la lista\n"
-                            + "2.Eliminar del final de la lista\n"
-                            + "3.Eliminar con el ID seleccionado\n"));
-                        switch(opcionEliminarCampoCultivo){
-                            case 1:
-                                listaCultivos.eliminarDelInicio();
-                                break;
-                            case 2:
-                                listaCultivos.eliminarDelFinal();
-                                break;
-                            case 3:
+                        
                                 int idEliminar=Integer.parseInt(JOptionPane.showInputDialog(""
                             + "Escoger el ID del campo de cultivo a eliminar"));
                                 listaCultivos.eliminarConID(idEliminar);//aca falta seguir 
-                        }
+                        
                     }else{
                        JOptionPane.showMessageDialog(null, "La lista no tiene elementos");
                     }
