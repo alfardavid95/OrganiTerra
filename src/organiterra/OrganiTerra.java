@@ -249,7 +249,7 @@ public class OrganiTerra {
                     break;
                 case 5:
                     //5.Salir
-                    JOptionPane.showMessageDialog(null, "Salir");
+                    JOptionPane.showMessageDialog(null, "Cerrando Sistema...");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, " Digite alguna opcion valida");
