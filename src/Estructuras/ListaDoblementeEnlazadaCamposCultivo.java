@@ -226,15 +226,20 @@ public class ListaDoblementeEnlazadaCamposCultivo {
         return campito;
     }
     
-    public void SobreescribirDatoEnLista(CampoCultivo campito){
-        NodoCamposCultivo auxiliar = inicio;
-        while(auxiliar!=null){
-            if (auxiliar.getCampito().getId()==campito.getId()&& 
-                auxiliar.getCampito().getNombreCampoCultivo().equals(campito.getNombreCampoCultivo())){
-                auxiliar.setCampito(campito);
-            }
-                auxiliar=auxiliar.getNext();
-        }
+    public void SobreescribirDatoEnLista(CampoCultivo cam){
+        if(inicio != null){
+           
+           if(cam.getId() >= inicio.getCampito().getId() && cam.getId() <= fin.getCampito().getId()){
+           
+           NodoCamposCultivo aux= inicio;
+           
+           while(aux!=fin && aux.getCampito().getId() < cam.getId()){aux=aux.getNext();}
+           
+           if(aux.getCampito().getId() == cam.getId())
+           {aux.getCampito().setNombreCampoCultivo(cam.getNombreCampoCultivo()); }
+       
+       
+           }}
     }
     
     public boolean existe(int id){
