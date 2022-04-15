@@ -44,7 +44,7 @@ public class OrganiTerra {
         do{
             try{
             opcionMainMenu=Integer.parseInt(JOptionPane.showInputDialog(""
-                    + "Menu Principal:"
+                    + "Menu Principal:\n"
                     + "1. Crear campo de cultivo nuevo\n"
                     + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo (sub-menu)\n"
