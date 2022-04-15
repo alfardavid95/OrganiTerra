@@ -44,16 +44,17 @@ public class OrganiTerra {
         do{
             try{
             opcionMainMenu=Integer.parseInt(JOptionPane.showInputDialog(""
+                    + "Menu Principal:"
                     + "1. Crear campo de cultivo nuevo\n"
                     + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
-                    + "3. Admistrar campo de cultivo\n"
+                    + "3. Admistrar campo de cultivo (sub-menu)\n"
                     + "4. Eliminar campo de cultivo\n"
                     + "5. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
             
             switch(opcionMainMenu ){
                 case 1:
                     //Menu Principal/1.Crear campo de cultivo nuevo
-                    JOptionPane.showMessageDialog(null,"Ha elegido crear un campo de tultivo");
+                    JOptionPane.showMessageDialog(null,"Ha elegido crear un campo de cultivo");
                     Calendar calFechacreacionTerreno = Calendar.getInstance();
                     Date dateCreacionTerreno = calFechacreacionTerreno.getTime();
                     
@@ -119,6 +120,7 @@ public class OrganiTerra {
                             
                             JOptionPane.showMessageDialog(null,"Su campo de cultivo si existe");
                             do{
+                                try{
                             eleccionAdministrarCampo = Integer.parseInt(JOptionPane.showInputDialog(
                             "Menu de administracion del campo :\n"
                             + "ID:{"+campito.getId()+"} Nombre:{"+campito.getNombreCampoCultivo()+"}\n\n"
@@ -130,7 +132,7 @@ public class OrganiTerra {
                             +"5. Airear terreno\n" 
                             +"6. Agregar pestizida\n"
                             +"7. Revisar estado de la tierra\n"
-                            +"8. Salir\n"));
+                            +"8. Salir\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
                     
                             switch(eleccionAdministrarCampo){
                                 case 1://MenuPrincipal/3.Administrar cultivos/1. Elegir cultivo para sembrar
