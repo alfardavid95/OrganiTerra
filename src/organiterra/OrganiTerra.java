@@ -268,7 +268,7 @@ public class OrganiTerra {
                         
                     
                         }else{
-                            JOptionPane.showMessageDialog(null, "El campo que busca no existe...\n"
+                            JOptionPane.showMessageDialog(null, "El campo con ese ID  que busca no existe...\n"
                             + "salir al menu principal");
                             
                         }
