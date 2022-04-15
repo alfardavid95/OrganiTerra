@@ -42,16 +42,50 @@ public class ListaCircularSimpleEras {
     }
     
     //metodo para recorre la lista 
-    public void mostarLista(){
+    public void mostarLista(int selector_de_variables_a_revisar){
         NodoEras aux;
         aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
         String cadenaDeCaracteres = "";
-        do {
-            cadenaDeCaracteres = cadenaDeCaracteres + "["+ aux.getPersona().toString()+"]->\n";
-            aux=aux.getNext();
-        }while(aux!=ultimo.getNext());
-        JOptionPane.showMessageDialog(null, cadenaDeCaracteres, "Mostrando la lista circular", JOptionPane.INFORMATION_MESSAGE);     
+        switch (selector_de_variables_a_revisar){
+            case 1://Revisar aireacion, humedad y PH\n"
+                do {
+                    cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
+                            + "Nivel de aireacion [" +aux.getDato().getAireacion()+"]\n"
+                            + "Nivel de humedad["+aux.getDato().getNivelDehumedad()+"]\n"
+                            + "Nivel de ph["+aux.getDato().getPh()+"]\n\n";
+                    aux=aux.getNext();
+                }while(aux!=ultimo.getNext());    
+                break;
+            case 2://Revisar Plagas\n
+                do {
+                    cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
+                            + "Tiene las siguientes plagas"
+                            + "Tiene Hongos [" +aux.getDato().isTieneHongos()+"]\n"
+                            + "Tiene maleza["+aux.getDato().isTieneMaleza()+"]\n"
+                            + "Nive insectos["+aux.getDato().isTieneinsectos()+"]\n\n";
+                    aux=aux.getNext();
+                }while(aux!=ultimo.getNext());                  
+                break;
+            case 3://Revisar Minerales\n"
+                do {
+                    cadenaDeCaracteres = cadenaDeCaracteres + "["+ aux.getDato().toString()+"]->\n";
+                    aux=aux.getNext();
+                }while(aux!=ultimo.getNext());                  
+                break;
+            case 4://Revisar tipo de suelo\n"
+                do {
+                    cadenaDeCaracteres = cadenaDeCaracteres + "["+ aux.getDato().toString()+"]->\n";
+                    aux=aux.getNext();
+                }while(aux!=ultimo.getNext());                  
+                break;
+                
+        }
+
+        JOptionPane.showMessageDialog(null, cadenaDeCaracteres, "Mostrando informacion de eras y campo de cultivo", JOptionPane.INFORMATION_MESSAGE);     
     }
+    
+    
+    
     
     //eliminar un Nodo de una lista
     public boolean eliminar (Era persona){
@@ -59,12 +93,12 @@ public class ListaCircularSimpleEras {
         boolean encontrado = false;
         actual=ultimo;
         while (actual.getNext()!= ultimo && !encontrado){ //si recorre toda la lista y no lo encuentra no hace nada pero si recorre toda la lista y lo encuentra lo borra
-            encontrado= (actual.getNext().getPersona().equals(persona));//verificar si existe o no de acuerdo a la data que se pidio
+            encontrado= (actual.getNext().getDato().equals(persona));//verificar si existe o no de acuerdo a la data que se pidio
             if(!encontrado){//si no lo encuentra siga recorriendo 
                 actual = actual.getNext();
             }
         }
-        encontrado = (actual.getNext().getPersona().equals(this));
+        encontrado = (actual.getNext().getDato().equals(this));
         if (encontrado){
             NodoEras aux = actual.getNext();
             if (ultimo.equals(ultimo.getNext())){

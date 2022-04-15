@@ -35,11 +35,11 @@ public class NodoEras {
     }
 
 
-    public Era getPersona() {
+    public Era getDato() {
         return era;
     }
 
-    public void setPersonita(Era era) {
+    public void setDato(Era era) {
         this.era = era;
     }
     

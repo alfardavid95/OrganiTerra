@@ -15,7 +15,7 @@ import Estructuras.*;
  */
 public class CampoCultivo {
     private String nombreCampoCultivo;
-    private String tipoCultivo;
+    private String tipoCultivo = "";
     private int id;
     private Date fechaCosecha;
     private Date fechaSiembra;
@@ -38,9 +38,10 @@ public class CampoCultivo {
         this.fechaCreacionTerreno = fechaCreacionTerreno;
         this.canteras =canEras;
         for (int i=0; i<canEras; i++){// en este ciclo crea la lista con la cantidad de eras que se definio al momento de la creacion
-            Era era = new Era();
+            Era era = new Era((i+1));
             listaEras.insertar(era);
         }
+        
     }
 
     public String getNombreCampoCultivo() {

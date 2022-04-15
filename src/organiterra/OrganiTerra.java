@@ -38,13 +38,14 @@ public class OrganiTerra {
                 int idCultivo=1000;
                 ListaDoblementeEnlazadaCamposCultivo listaCultivos = new ListaDoblementeEnlazadaCamposCultivo();
                 CampoCultivo campito = null;
+                int eleccionAdministrarCampo =0;
                 
 
         do{
             try{
             opcionMainMenu=Integer.parseInt(JOptionPane.showInputDialog(""
                     + "1. Crear campo de cultivo nuevo\n"
-                    + "2. Verificar informacion de campos de cultivo \n"//aca muestra en una lista enlazada 
+                    + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo\n"
                     + "4. Eliminar campo de cultivo\n"
                     + "5. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
@@ -76,7 +77,7 @@ public class OrganiTerra {
                     
                 case 2:
                     //Menu Principal/ 2.Verificar informacion de campo de cultivo o eras
-                    JOptionPane.showMessageDialog(null, "Ha elegido desplegar la informacion de los campos de cultivo");
+                    JOptionPane.showMessageDialog(null, "Ha elegido desplegar la informacion general de los campos de cultivo");
                     // aca tiene que ir un display que muestre todos los campos de cultivos existentes (ojala en una lista enlazada simple con todos los campos que vaya sumandose como un string)
                     //y que muestre el nombre del campo de cultivo, el id del campo de cultivo, si tiene sembrado algo, que cultivo tiene sembrado si tiene algo sembrado y cuando es la fecha de la cosecha, y cuantos dias faltan
                     //if(!listaCultivos.estaVacia()){
@@ -115,9 +116,11 @@ public class OrganiTerra {
                         
                         
                         if(seleccionValida && campito!=null){
+                            
                             JOptionPane.showMessageDialog(null,"Su campo de cultivo si existe");
-                            int eleccionAdministrarCampo = Integer.parseInt(JOptionPane.showInputDialog(
-                            "Ha decidido administrar el campo :\n"
+                            do{
+                            eleccionAdministrarCampo = Integer.parseInt(JOptionPane.showInputDialog(
+                            "Menu de administracion del campo :\n"
                             + "ID:{"+campito.getId()+"} Nombre:{"+campito.getNombreCampoCultivo()+"}\n\n"
                                 
                             +"1. Elegir cultivo para sembrar\n"
@@ -184,9 +187,45 @@ public class OrganiTerra {
                                     }
                                 break;
                                 case 2:
-                                //2. //MenuPrincipal/3.Administrar cultivos/2.Escanear campo de cultivo y las eras
+                                    //2. //MenuPrincipal/3.Administrar cultivos/2.Escanear campo de cultivo y las eras
                                     //Escanear campo de cultivo para ver si esta vacio
-                                    campito.getListaEras().mostarLista();
+                                    JOptionPane.showMessageDialog(null, "Ha escogido revisar campo de cultivo y las eras");
+                                    int selector_deVisualizacion =0;
+                                    int salirEscanearCampodeCultivoEras =7;
+                                    do{
+
+                                    selector_deVisualizacion = Integer.parseInt(JOptionPane.showInputDialog("Menu de revision de Eras :\n"
+                                    + "ID:{"+campito.getId()+"} Nombre:{"+campito.getNombreCampoCultivo()+"}\n\n"
+                                
+                                    +"1. Revisar aireacion, humedad y PH\n"//se ve en la lista de eras
+                                    +"2. Revisar Plagas\n"//se ve en la lista de eras
+                                    +"3. Revisar Minerales\n"//se ve en la lista de eras
+                                    +"4. Revisar tipo de suelo de cada era\n"//se ve en la lista de eras
+                                    +"5. Revisar tipo de cultivo actual, fecha de siembra y cosecha y cuantos dias faltan para recoger la cosecha\n"//se se jala del objeto campito
+                                    +"6. Revisar drenaje e irrigacion de campo de cultivo\n"//se se jala del objeto campito
+                                    +"7. Salir\n"));
+                                    
+                                   
+                                            if(!(selector_deVisualizacion==salirEscanearCampodeCultivoEras)&&!(selector_deVisualizacion>=5)){
+                                            campito.getListaEras().mostarLista(selector_deVisualizacion);
+                                            }else if(selector_deVisualizacion<salirEscanearCampodeCultivoEras ){
+                                                switch(selector_deVisualizacion){
+                                                    case 5:
+                                                        JOptionPane.showMessageDialog(null, "Nombre de campo de cultivo: [" + campito.getNombreCampoCultivo()+"]\n"
+                                                                + "ID del campo de cultivo: [" + campito.getId()+"]\n"
+                                                                + "Tipo de cultivo:["+campito.getTipoCultivo()+"] \n"
+                                                                + "falta poner la fecha de siembra y la fecha esperada de cosecha y los dias que hacen falta a partir de la fecha de hoy");
+                                                        break;
+                                                    case 6:
+                                                        JOptionPane.showMessageDialog(null, "Nombre de campo de cultivo: [" + campito.getNombreCampoCultivo()+"]\n"
+                                                                + "ID del campo de cultivo: [" + campito.getId()+"]\n"
+                                                                + "Tiene drenaje:["+campito.isTienedrenaje()+"] \n"
+                                                                + "Tiene irrigacion:["+campito.isTieneAgua()+"] \n");
+                                                        break;
+                                                }
+                                            }
+                                    }while(!(selector_deVisualizacion==salirEscanearCampodeCultivoEras));
+                                    JOptionPane.showMessageDialog(null, "Sale al menu de administracion de campo de cultivo");
 
                                 break;
                             
@@ -212,24 +251,29 @@ public class OrganiTerra {
                             
                                 case 8:
                                 ////MenuPrincipal/3.Administrar cultivos/8.salir a menu principal
+                                    JOptionPane.showMessageDialog(null, "salir al menu principal");
                                 break;
                                 
                                 default:
                                 ////MenuPrincipal/3.Administrar cultivos/ default:salir a menu principal
+                                    JOptionPane.showMessageDialog(null, "Digite una opcion valida");
                                 break;
                             
                             
                             }
-                    
+                        }while(!(eleccionAdministrarCampo==8));
+                            
+                        
                     
                         }else{
-                            JOptionPane.showMessageDialog(null, "El campo que busca no existe...\n");
+                            JOptionPane.showMessageDialog(null, "El campo que busca no existe...\n"
+                            + "salir al menu principal");
                             
                         }
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Lista de campos de cultivo esta vacia\n"
-                                + "salir al menu principal");
+                        + "salir al menu principal");
                     }
                         
                     break;

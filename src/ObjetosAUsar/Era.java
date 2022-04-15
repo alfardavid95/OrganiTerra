@@ -22,8 +22,9 @@ public class Era {
     boolean tieneinsectos;
     int valorMaximoParametro = 100;
     int valorMinimoparametro = 70;
+    int id;
     
-    public Era(){
+    public Era(int id){
         /*
             esta parte es para poder escoger el tipo de suelo
         */
@@ -61,8 +62,13 @@ public class Era {
         tieneMaleza=randomdMaleza.nextBoolean();
         tieneHongos=randomdHongos.nextBoolean();
         tieneinsectos=randomdinsectos.nextBoolean();
+        this.id =id;
                 
     }
+
+    public int getId() {
+        return id;
+    }    
 
     public String getTiposuelo() {
         return tiposuelo;
