@@ -124,7 +124,7 @@ public class OrganiTerra {
                             + "ID:{"+campito.getId()+"} Nombre:{"+campito.getNombreCampoCultivo()+"}\n\n"
                                 
                             +"1. Elegir cultivo para sembrar\n"
-                            +"2. Escanear campo de cultivo y las eras\n"
+                            +"2. Revision de Eras y campo de cultivo (submenu)\n"
                             +"3. Limpiar terreno\n"// quitar maleza
                             +"4. Abonar y enriquecer la tierra\n" 
                             +"5. Airear terreno\n" 
