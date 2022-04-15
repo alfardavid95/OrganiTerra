@@ -132,14 +132,14 @@ public class OrganiTerra {
                             +"5. Airear terreno\n" 
                             +"6. Agregar pestizida\n"
                             +"7. Revisar estado de la tierra\n"
-                            +"8. Salir\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
+                            +"8. Salir al menu principal\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
                     
                             switch(eleccionAdministrarCampo){
                                 case 1://MenuPrincipal/3.Administrar cultivos/1. Elegir cultivo para sembrar
                                     int opcionTipoCultiivo =Integer.parseInt(JOptionPane.showInputDialog("Elija el tipo de cultivo\n"
                                     + "1:Papa\n"
-                                    + "2.Chayote\n"
-                                    + "3.Culantro\n"
+                                    + "2.Sandia\n"
+                                    + "3.Melon\n"
                                     + "4.Zanahoria\n"
                                     + "5.Trigo\n"
                                     + "6.Fresa\n"));
@@ -205,7 +205,7 @@ public class OrganiTerra {
                                     +"4. Revisar tipo de suelo de cada era\n"//se ve en la lista de eras
                                     +"5. Revisar tipo de cultivo actual, fecha de siembra y cosecha y cuantos dias faltan para recoger la cosecha\n"//se se jala del objeto campito
                                     +"6. Revisar drenaje e irrigacion de campo de cultivo\n"//se se jala del objeto campito
-                                    +"7. Salir\n"));
+                                    +"7. Salir al menu de administracion de campo\n"));
                                     
                                    
                                             if(!(selector_deVisualizacion==salirEscanearCampodeCultivoEras)&&!(selector_deVisualizacion>=5)){
