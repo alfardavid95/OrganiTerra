@@ -59,22 +59,33 @@ public class ListaCircularSimpleEras {
             case 2://Revisar Plagas\n
                 do {
                     cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
-                            + "Tiene las siguientes plagas"
+                            + "Tiene las siguientes plagas\n"
                             + "Tiene Hongos [" +aux.getDato().isTieneHongos()+"]\n"
                             + "Tiene maleza["+aux.getDato().isTieneMaleza()+"]\n"
-                            + "Nive insectos["+aux.getDato().isTieneinsectos()+"]\n\n";
+                            + "Tiene insectos["+aux.getDato().isTieneinsectos()+"]\n\n";
                     aux=aux.getNext();
                 }while(aux!=ultimo.getNext());                  
                 break;
             case 3://Revisar Minerales\n"
                 do {
-                    cadenaDeCaracteres = cadenaDeCaracteres + "["+ aux.getDato().toString()+"]->\n";
+                    cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
+                            + "Tiene las siguientes concentraciones de minerales"
+                            + "Concentracion de Calcio [" +aux.getDato().isTieneHongos()+"]\n"
+                            + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
+                            + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
+                            + "Concentracion de Magnesio["+aux.getDato().getMagnesio()+"]\n"
+                            + "Concentracion de Hierro["+aux.getDato().getHierro()+"]\n"
+                            + "Concentracion de Azufre["+aux.getDato().getAzufre()+"]\n"
+                            + "Concentracion de Zinc["+aux.getDato().getZinc()+"]\n"
+                            + "Concentracion de Fosforo["+aux.getDato().getFosforo()+"]\n"
+                            + "Concentracion de Boro["+aux.getDato().getBoro()+"]\n\n";
                     aux=aux.getNext();
                 }while(aux!=ultimo.getNext());                  
                 break;
             case 4://Revisar tipo de suelo\n"
                 do {
-                    cadenaDeCaracteres = cadenaDeCaracteres + "["+ aux.getDato().toString()+"]->\n";
+                    cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
+                            + "Tiene el siguiente tipo de suelo [" +aux.getDato().getTiposuelo()+"]\n\n";
                     aux=aux.getNext();
                 }while(aux!=ultimo.getNext());                  
                 break;
