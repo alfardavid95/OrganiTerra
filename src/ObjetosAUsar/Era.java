@@ -16,7 +16,7 @@ public class Era {
     int aireacion; //un valor entre 70-100%
     int nivelDehumedad;//debe estar entre un 70-100% recomendada%
     int nitrogeno, fosforo, potasio, calcio, azufre, magnesio, hierro, zinc, manganeso, boro, cobre, cloro, molibdeno;// se mide de 70-100%
-    double ph;// valor tiene que esta entre 5.5 y 8
+    double ph;// valor tiene que esta entre 5 y 9
     boolean tieneMaleza;
     boolean tieneHongos;
     boolean tieneinsectos;
@@ -63,6 +63,7 @@ public class Era {
         tieneMaleza=randomdMaleza.nextBoolean();
         tieneHongos=randomdHongos.nextBoolean();
         tieneinsectos=randomdinsectos.nextBoolean();
+        ph = RNGentreRangosDouble(4, 10);
         this.id =id;
                 
     }
@@ -252,6 +253,11 @@ public class Era {
         Random random = new Random();
         int randomValueInt = random.nextInt((finish+1)-start)+start;
         return randomValueInt;
+    }
+    public double RNGentreRangosDouble(int min_val, int max_val){
+        Random r = new Random();
+        double randomValue = min_val + (max_val - min_val) * r.nextDouble();
+        return randomValue;
     }
     
 }
