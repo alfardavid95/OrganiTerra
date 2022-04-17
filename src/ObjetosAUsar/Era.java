@@ -28,7 +28,8 @@ public class Era {
         /*
             esta parte es para poder escoger el tipo de suelo
         */
-        int selectorArcillosoOArenoso =(int) (Math.random() * 2) + 1;
+        int selectorArcillosoOArenoso = RNGentreRangos(1, 2);
+
         switch(selectorArcillosoOArenoso){
             case 1:
                 tiposuelo="arcilloso";
@@ -39,7 +40,6 @@ public class Era {
             default:
                 tiposuelo= "arcilloso";
         }
-        Random randito = new Random();
         
         //esta parte es para darle valores random a todas las variables de la era
         aireacion = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
