@@ -39,23 +39,24 @@ public class Era {
             default:
                 tiposuelo= "arcilloso";
         }
-        //esta parte es para darle valores random a todas las variables de la era
-        aireacion =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        nivelDehumedad =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        nitrogeno =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        fosforo =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        potasio =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        calcio =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        azufre =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        magnesio =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        hierro =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        zinc =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        manganeso =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        boro =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        cobre =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        cloro =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
-        molibdeno =(int) (Math.random() * valorMaximoParametro) + valorMinimoparametro;
+        Random randito = new Random();
         
+        //esta parte es para darle valores random a todas las variables de la era
+        aireacion = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        nivelDehumedad = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        nitrogeno = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        fosforo = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        potasio = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        calcio = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        azufre = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        magnesio = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        hierro = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        zinc = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        manganeso = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        boro = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        cobre = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        cloro = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
+        molibdeno = RNGentreRangos(valorMinimoparametro, valorMaximoParametro);
         Random randomdMaleza = new Random();// esto es para crear booleans random
         Random randomdHongos = new Random();
         Random randomdinsectos = new Random();
@@ -246,6 +247,11 @@ public class Era {
         this.valorMinimoparametro = valorMinimoparametro;
     }
     
-    
+    public int RNGentreRangos(int start, int finish){
+        
+        Random random = new Random();
+        int randomValueInt = random.nextInt((finish+1)-start)+start;
+        return randomValueInt;
+    }
     
 }

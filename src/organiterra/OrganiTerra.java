@@ -85,10 +85,7 @@ public class OrganiTerra {
                    
                         listaCultivos.MostrarDeInicioAFin();
                     
-                    
-                    //}else{
-                        //JOptionPane.showMessageDialog(null, "no hay nodos");
-                    //}
+   
                     break;
                     
                 case 3:
