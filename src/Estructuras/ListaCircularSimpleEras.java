@@ -98,9 +98,10 @@ public class ListaCircularSimpleEras {
     public void incrementarAireacion(){
         NodoEras aux;
         aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        JOptionPane.showMessageDialog(null, "Ha decidido airear la tierra estos son los valores previo a la aireacion");
+        mostarLista(1);
+        JOptionPane.showMessageDialog(null, "Incrementa la aireacion a todas las eras del campo con menos de 96 por 5 puntos");
         do {
-            int i =1;
-            System.out.println("loop" + i);
             if(aux.getDato().getAireacion()<=95){
                 aux.getDato().setAireacion(aux.getDato().getAireacion()+5);// esto lo que hace es incrementar por 5 la aireacion si la aereacion es menor de 95
             }
