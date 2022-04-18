@@ -114,7 +114,7 @@ public class OrganiTerra {
                         
                         
                         if(seleccionValida && campito!=null){
-                            
+                            ListaCircularSimpleEras listitaErasDelCampitoSeleccionado=campito.getListaEras();
                             JOptionPane.showMessageDialog(null,"Su campo de cultivo si existe");
                             do{
                                 try{
@@ -122,7 +122,7 @@ public class OrganiTerra {
                             "Menu de administracion del campo :\n"
                             + "ID:{"+campito.getId()+"} Nombre:{"+campito.getNombreCampoCultivo()+"}\n\n"
                                 
-                            +"1. Elegir cultivo para sembrar\n"
+                            +"1. Ejecutar cambios a las eras y campo de cultivo(submenu)\n"
                             +"2. Revision de Eras y campo de cultivo (submenu)\n"
                             +"3. Limpiar terreno\n"// quitar maleza
                             +"4. Abonar y enriquecer la tierra\n" 
@@ -132,58 +132,82 @@ public class OrganiTerra {
                             +"8. Salir al menu principal\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
                     
                             switch(eleccionAdministrarCampo){
-                                case 1://MenuPrincipal/3.Administrar cultivos/1. Elegir cultivo para sembrar
-                                    int opcionTipoCultiivo =Integer.parseInt(JOptionPane.showInputDialog("Elija el tipo de cultivo\n"
-                                    + "1:Papa\n"
-                                    + "2.Sandia\n"
-                                    + "3.Melon\n"
-                                    + "4.Zanahoria\n"
-                                    + "5.Trigo\n"
-                                    + "6.Fresa\n"));
+                                case 1://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y al campo de cultivo(submenu)
+                                    int eleccionEjecutarcambiosErasYcampo;
+                                    do{
+                                    JOptionPane.showMessageDialog(null, "He elegido realizar cambios a las eras y el campo");
+                                    eleccionEjecutarcambiosErasYcampo=Integer.parseInt(JOptionPane.showInputDialog("Ejecutar cambios a las eras y campo de cultivo\n"
+                                            + "1.Escoger tipo de cultivo que se va a cultivar en el campo\n"
+                                            + "2.Airear terreno\n"
+                                            + "3.Abonar la tierra\n"
+                                            + "4.Agregar pestizida\n"
+                                            + "5.Agregar agua\n"
+                                            + "6.Sembrar campo\n"
+                                            + "7.Cosechar campo\n"
+                                            + "8.Salir al menu de administracion\n"));
+                                    
+                                    switch (eleccionEjecutarcambiosErasYcampo){
+                                        case 1: //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/1.Elija tipo de cultivo
+                                               int opcionTipoCultiivo =Integer.parseInt(JOptionPane.showInputDialog("Elija el tipo de cultivo\n"
+                                                + "1:Papa\n"
+                                                + "2.Sandia\n"
+                                                + "3.Melon\n"
+                                                + "4.Zanahoria\n"
+                                                + "5.Trigo\n"
+                                                + "6.Fresa\n"));
                     
-                                    switch(opcionTipoCultiivo){
-                                        case 1:
-                                        //1:Papa
-                                        tipoCultivo = "Papa";
-                                        break;
+                                            switch(opcionTipoCultiivo){
+                                                case 1:
+                                                //1:Papa
+                                                tipoCultivo = "Papa";
+                                                break;
                             
-                                        case 2:
-                                        //2.Chayote
-                                        tipoCultivo = "Sandia";
-                                        break;
+                                                case 2:
+                                                //2.Chayote
+                                                tipoCultivo = "Sandia";
+                                                break;
                             
-                                        case 3:
-                                        //3.Culantro
-                                        tipoCultivo = "Melon";
-                                        break;
+                                                case 3:
+                                                //3.Culantro
+                                                tipoCultivo = "Melon";
+                                                break;
                             
-                                        case 4:
-                                        //4.Zanahoria
-                                        tipoCultivo = "Zanahoria";
-                                        break;
+                                                case 4:
+                                                //4.Zanahoria
+                                                tipoCultivo = "Zanahoria";
+                                                break;
                             
-                                        case 5:
-                                        //5.Trigo
-                                        tipoCultivo = "Trigo";
-                                        break;
+                                                case 5:
+                                                //5.Trigo
+                                                tipoCultivo = "Trigo";
+                                                break;
                             
-                                        case 6:
-                                        //6.Fresa
-                                        tipoCultivo = "Fresa";
-                                        break;
+                                                case 6:
+                                                //6.Fresa
+                                                tipoCultivo = "Fresa";
+                                                break;
                             
-                                        default:
-                                        tipoCultivo = "default";
-                                        break;
-                                    }   
+                                                default:
+                                                tipoCultivo = "default";
+                                                break;
+                                            }   
                     
-                                    if (!tipoCultivo.equals("default")){
-                                        JOptionPane.showMessageDialog(null, "ha elegido el cultivo que desea cultivar: {"+tipoCultivo+"}");
-                                        campito.setTipoCultivo(tipoCultivo);
-                                        listaCultivos.SobreescribirDatoEnLista(campito);
-                                    }else{
-                                        JOptionPane.showMessageDialog(null, "Tiene que escoger un tipo de cultivo valido");
+                                            if (!tipoCultivo.equals("default")){
+                                                JOptionPane.showMessageDialog(null, "ha elegido el cultivo que desea cultivar: {"+tipoCultivo+"}");
+                                                campito.setTipoCultivo(tipoCultivo);
+                                                listaCultivos.SobreescribirDatoEnLista(campito);
+                                            }else{
+                                            JOptionPane.showMessageDialog(null, "Tiene que escoger un tipo de cultivo valido");
+                                            }   
+                                        break;
+                                        
+                                        case 2://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/2.Airear terreno
+                                            listitaErasDelCampitoSeleccionado.incrementarAireacion();          
+                                        break;
                                     }
+                                    
+                                    }while(!(eleccionEjecutarcambiosErasYcampo==8));
+                                    JOptionPane.showMessageDialog(null, "Sale al menu de administracion de campo de cultivo");    
                                 break;
                                 case 2:
                                     //2. //MenuPrincipal/3.Administrar cultivos/2.Escanear campo de cultivo y las eras
@@ -206,7 +230,7 @@ public class OrganiTerra {
                                     
                                    
                                             if(!(selector_deVisualizacion==salirEscanearCampodeCultivoEras)&&!(selector_deVisualizacion>=5)){
-                                            campito.getListaEras().mostarLista(selector_deVisualizacion);
+                                                campito.getListaEras().mostarLista(selector_deVisualizacion);
                                             }else if(selector_deVisualizacion<salirEscanearCampodeCultivoEras ){
                                                 switch(selector_deVisualizacion){
                                                     case 5:
@@ -229,7 +253,8 @@ public class OrganiTerra {
                                 break;
                             
                                 case 3:
-                                ////MenuPrincipal/3.Administrar cultivos/3. Limpiar terreno q
+                                ////MenuPrincipal/3.Administrar cultivos/3. cultivar
+
                                 break;
                             
                                 case 4:

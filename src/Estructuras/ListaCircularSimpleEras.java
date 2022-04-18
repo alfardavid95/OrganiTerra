@@ -95,10 +95,25 @@ public class ListaCircularSimpleEras {
         JOptionPane.showMessageDialog(null, cadenaDeCaracteres, "Mostrando informacion de eras y campo de cultivo", JOptionPane.INFORMATION_MESSAGE);     
     }
     
+    public void incrementarAireacion(){
+        NodoEras aux;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        do {
+            int i =1;
+            System.out.println("loop" + i);
+            if(aux.getDato().getAireacion()<=95){
+                aux.getDato().setAireacion(aux.getDato().getAireacion()+5);// esto lo que hace es incrementar por 5 la aireacion si la aereacion es menor de 95
+            }
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+        mostarLista(1);
+        
+    }
     
     
     
-    //eliminar un Nodo de una lista
+    
+    //eliminar un Nodo de una lis
     public boolean eliminar (Era persona){
         NodoEras actual;
         boolean encontrado = false;
