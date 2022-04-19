@@ -102,7 +102,7 @@ public class ListaCircularSimpleEras {
         mostarLista(1);
         JOptionPane.showMessageDialog(null, "Incrementa la aireacion a todas las eras del campo con menos de 96 por 5 puntos");
         do {
-            if(aux.getDato().getAireacion()<=95){
+            if(aux.getDato().getAireacion()<96){
                 aux.getDato().setAireacion(aux.getDato().getAireacion()+5);// esto lo que hace es incrementar por 5 la aireacion si la aereacion es menor de 95
             }
             aux=aux.getNext();
@@ -110,6 +110,24 @@ public class ListaCircularSimpleEras {
         mostarLista(1);
         
     }
+    
+    public void agregarAgua(){
+        NodoEras aux;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        JOptionPane.showMessageDialog(null, "Ha decidido incrementar la humedad de las eras\n"
+                + "los valores mostrados a continuacion son previos a agregarle humedad a las eras");
+        mostarLista(1);
+        JOptionPane.showMessageDialog(null, "Incrementa la humedad a todas las eras del campo con menos de 96 por 5 puntos");
+        do {
+            if(aux.getDato().getNivelDehumedad()<96){
+                aux.getDato().setNivelDehumedad(aux.getDato().getNivelDehumedad()+5);// esto lo que hace es incrementar por 5 la aireacion si la aereacion es menor de 95
+            }
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+        mostarLista(1);
+        
+    }
+            
     
         public void incrementarMinerales(int mineralID){
         if(!(mineralID==10)){

@@ -128,18 +128,20 @@ public class OrganiTerra {
                     
                             switch(eleccionAdministrarCampo){
                                 case 1://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y al campo de cultivo(submenu)
-                                    int eleccionEjecutarcambiosErasYcampo;
-                                    do{
+                                    int eleccionEjecutarcambiosErasYcampo=0;
                                     JOptionPane.showMessageDialog(null, "He elegido realizar cambios a las eras y el campo");
+                                    do{
+                                       try{
                                     eleccionEjecutarcambiosErasYcampo=Integer.parseInt(JOptionPane.showInputDialog("Ejecutar cambios a las eras y campo de cultivo\n"
                                             + "1.Escoger tipo de cultivo que se va a cultivar en el campo\n"
                                             + "2.Airear terreno\n"
                                             + "3.Abonar la tierra (submenu)\n"
-                                            + "4.Agregar pestizida\n"
+                                            + "4.Agregar pestizida (submenu)\n"
                                             + "5.Agregar agua\n"
                                             + "6.Sembrar campo\n"
                                             + "7.Cosechar campo\n"
                                             + "8.Salir al menu de administracion\n"));
+                                    }catch(Exception e){eleccionAdministrarCampo=0;}
                                     
                                     switch (eleccionEjecutarcambiosErasYcampo){
                                         case 1: //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/1.Elija tipo de cultivo
@@ -265,10 +267,71 @@ public class OrganiTerra {
                                                      
                                         break;
                                         case 5:
+                                            //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/5. agregar agua
+                                            if(campito.isTieneAgua()&&campito.isTienedrenaje()){
+                                                listitaErasDelCampitoSeleccionado.agregarAgua();
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "necesita poner un flujo de agua y drenaje en este campo."
+                                                        + "\nDe no ser asi no va a poder incrementar la humedad.");
+                                                int selectoragua =0;
+                                                do{
+                                                    try{
+                                                selectoragua=Integer.parseInt(JOptionPane.showInputDialog("Desea conectar las fuentes de agua\n"
+                                                        + "1.poner drenaje\n"
+                                                        + "2.poner fuente de agua\n"
+                                                        + "3.Mostrar estado del agua y drenaje en el campo"
+                                                        + "4.Agregar humedad a las eras\n"
+                                                        + "4.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo\n"));
+                                                }catch(Exception e){selectorPesticida=0;}
+                                                switch (selectoragua){
+                                                    case 1:
+                                                        campito.setTienedrenaje(true);
+                                                    break;
+                                                    case 2:
+                                                        campito.setTieneAgua(true);
+                                                    break;
+                                                    case 3:
+                                                        JOptionPane.showMessageDialog(null, "Estatus del agua en el campo {"+campito.getNombreCampoCultivo()+"} con el id {"+campito.getId()+"}\n"
+                                                                + "Tiene drenaje ["+campito.isTienedrenaje()+"]\n"
+                                                                + "Tiene agua ["+campito.isTieneAgua()+"]");
+                                                    break;
+                                                    case 4:
+                                                        if (campito.isTieneAgua()&&campito.isTienedrenaje()){
+                                                            listitaErasDelCampitoSeleccionado.agregarAgua();
+                                                        }else{
+                                                            JOptionPane.showMessageDialog(null, "necesita poner un flujo de agua y drenaje en este campo."
+                                                        + "\nDe no ser asi no va a poder incrementar la humedad.");
+                                                        }
+                                                    break;
+                                                    case 5:
+                                                        JOptionPane.showMessageDialog(null, "Salir al menu de seleccion de ejecucion de cambio de eras y campos de cultivo");
+                                                    break;
+                                                    default:
+                                                        JOptionPane.showMessageDialog(null, "digite una opcion valida de seleccion de agua");
+                                                    break;
+                                                }
+                                                
+                                                }while(!(selectoragua==5)); 
+                                            }
+                                            
+                                            
+                                        break;
+                                        case 6:
+                                            //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/5. sembrar
+                                        break;
+                                        case 7:
+                                            //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. cosechar
+                                        break;
+                                        case 8:
+                                            JOptionPane.showMessageDialog(null, "Sale al menu de administracion de campo de cultivo");
+                                        break;
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Digite una opcion valida");
+                                        break;
                                     }
                                     
                                     }while(!(eleccionEjecutarcambiosErasYcampo==8));
-                                    JOptionPane.showMessageDialog(null, "Sale al menu de administracion de campo de cultivo");    
+                                        
                                 break;
                                 case 2:
                                     //2. //MenuPrincipal/3.Administrar cultivos/2.Escanear campo de cultivo y las eras
