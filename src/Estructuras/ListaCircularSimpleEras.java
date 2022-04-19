@@ -69,7 +69,7 @@ public class ListaCircularSimpleEras {
             case 3://Revisar Minerales\n"
                 do {
                     cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
-                            + "Tiene las siguientes concentraciones de minerales"
+                            + "Tiene las siguientes concentraciones de minerales\n"
                             + "Concentracion de Calcio [" +aux.getDato().getCalcio()+"]\n"
                             + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
                             + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
