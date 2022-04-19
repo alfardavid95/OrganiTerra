@@ -67,7 +67,6 @@ public class ListaDoblementeEnlazadaCamposCultivo {
            inicio=aux;
            fin.setNext(inicio);
            inicio.setBack(fin);
-           
        }else if(fin.getCampito().getId() <= persona.getId()){
            
            

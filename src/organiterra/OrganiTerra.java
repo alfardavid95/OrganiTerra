@@ -124,12 +124,7 @@ public class OrganiTerra {
                                 
                             +"1. Ejecutar cambios a las eras y campo de cultivo(submenu)\n"
                             +"2. Revision de Eras y campo de cultivo (submenu)\n"
-                            +"3. Limpiar terreno\n"// quitar maleza
-                            +"4. Abonar y enriquecer la tierra\n" 
-                            +"5. Airear terreno\n" 
-                            +"6. Agregar pestizida\n"
-                            +"7. Revisar estado de la tierra\n"
-                            +"8. Salir al menu principal\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
+                            +"3. Salir al menu principal\n"));}catch(Exception e){eleccionAdministrarCampo=0;}
                     
                             switch(eleccionAdministrarCampo){
                                 case 1://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y al campo de cultivo(submenu)
@@ -204,6 +199,26 @@ public class OrganiTerra {
                                         case 2://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/2.Airear terreno
                                             listitaErasDelCampitoSeleccionado.incrementarAireacion();          
                                         break;
+                                        case 3:
+                                            //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/3. abonar el terreno(submenu)
+                                            int sleccionMineralaAbonar=0;
+                                            JOptionPane.showMessageDialog(null, "va a entrar al submenu de abonos para incrementar minerales");
+                                            do{
+                                                try{
+                                                    sleccionMineralaAbonar=Integer.parseInt(JOptionPane.showInputDialog("Seleccione el mineral que desea incrementar la concentracion\n"
+                                                        + "1.Calcio\n"
+                                                        + "2.Nitrogeno\n"
+                                                        + "3.Potasio\n"
+                                                        + "4.Magnesio\n"
+                                                        + "5.Hierro\n"
+                                                        + "6.Azufre\n"
+                                                        + "7.Zinc\n"
+                                                        + "8.Fosforo\n"
+                                                        + "9.Boro\n"
+                                                        + "10.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo\n"));
+                                                    listitaErasDelCampitoSeleccionado.incrementarMinerales(sleccionMineralaAbonar);
+                                                }catch(Exception e){eleccionAdministrarCampo=0;}
+                                            }while(!(sleccionMineralaAbonar==10));
                                     }
                                     
                                     }while(!(eleccionEjecutarcambiosErasYcampo==8));
@@ -253,28 +268,7 @@ public class OrganiTerra {
                                 break;
                             
                                 case 3:
-                                ////MenuPrincipal/3.Administrar cultivos/3. cultivar
-
-                                break;
-                            
-                                case 4:
-                                ////MenuPrincipal/3.Administrar cultivos/4. Preparar terreno para iniciar plantacion
-                                break;
-                            
-                                case 5:
-                                //5//MenuPrincipal/3.Administrar cultivos/.Airear terreno
-                                break;
-                            
-                                case 6:
-                                ////MenuPrincipal/3.Administrar cultivos/6.Abonar y enriquecer la tierra
-                                break;
-                            
-                                case 7:
-                                ////MenuPrincipal/3.Administrar cultivos/7.Revisar estado de la tierra
-                                break;
-                            
-                                case 8:
-                                ////MenuPrincipal/3.Administrar cultivos/8.salir a menu principal
+                                ////MenuPrincipal/3.Administrar cultivos/3. csalir al menu principal
                                     JOptionPane.showMessageDialog(null, "salir al menu principal");
                                 break;
                                 
@@ -285,7 +279,7 @@ public class OrganiTerra {
                             
                             
                             }
-                        }while(!(eleccionAdministrarCampo==8));
+                        }while(!(eleccionAdministrarCampo==3));
                             
                         
                     
@@ -309,7 +303,7 @@ public class OrganiTerra {
                         
                                 int idEliminar=Integer.parseInt(JOptionPane.showInputDialog(""
                             + "Escoger el ID del campo de cultivo a eliminar"));
-                                listaCultivos.eliminarConID(idEliminar);//aca falta seguir 
+                                listaCultivos.eliminarConID(idEliminar);//aca se le manda el id y se borra en la lista
                         
                     }else{
                        JOptionPane.showMessageDialog(null, "La lista no tiene elementos");
@@ -317,7 +311,7 @@ public class OrganiTerra {
                     break;
                 case 5:
                     //5.Salir
-                    JOptionPane.showMessageDialog(null, "Cerrando Sistema...");
+                    JOptionPane.showMessageDialog(null, "Cerrando aplicación...");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, " Digite alguna opcion valida");

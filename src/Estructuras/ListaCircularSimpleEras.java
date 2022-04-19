@@ -70,7 +70,7 @@ public class ListaCircularSimpleEras {
                 do {
                     cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
                             + "Tiene las siguientes concentraciones de minerales"
-                            + "Concentracion de Calcio [" +aux.getDato().isTieneHongos()+"]\n"
+                            + "Concentracion de Calcio [" +aux.getDato().getCalcio()+"]\n"
                             + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
                             + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
                             + "Concentracion de Magnesio["+aux.getDato().getMagnesio()+"]\n"
@@ -109,6 +109,84 @@ public class ListaCircularSimpleEras {
         }while(aux!=ultimo.getNext());
         mostarLista(1);
         
+    }
+    
+        public void incrementarMinerales(int mineralID){
+        if(!(mineralID==10)){
+        NodoEras aux;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        JOptionPane.showMessageDialog(null, "Ha decidido incrementar las concentraciones recomendadas de minerales de la tierra\n"
+                + "estos son los valores de antes de hacerle un incremento");
+        mostarLista(3);
+        JOptionPane.showMessageDialog(null, "Incrementa en 5 la concentracion recomendada a cualquier valor menor de 96");
+        do {
+            switch (mineralID){
+                case 1://calcio
+                    if(aux.getDato().getCalcio()<=95){
+                        aux.getDato().setCalcio(aux.getDato().getCalcio()+5);// esto lo que hace es incrementar por 5 el nivel de calcio siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 2://nitrogeno
+                    if(aux.getDato().getNitrogeno()<=95){
+                        aux.getDato().setNitrogeno(aux.getDato().getNitrogeno()+5);// esto lo que hace es incrementar por 5 el nivel de nitrogeno siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 3://Potasio
+                    if(aux.getDato().getPotasio()<=95){
+                        aux.getDato().setPotasio(aux.getDato().getPotasio()+5);// esto lo que hace es incrementar por 5 el nivel de potasio siempre y cuando sea menor o igual de 95
+                    }                    
+                break;
+                case 4://Magnesio
+                    if(aux.getDato().getMagnesio()<=95){
+                        aux.getDato().setMagnesio(aux.getDato().getMagnesio()+5);// esto lo que hace es incrementar por 5 el nivel de magnesio siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 5://Hierro
+                    if(aux.getDato().getHierro()<=95){
+                        aux.getDato().setHierro(aux.getDato().getHierro()+5);// esto lo que hace es incrementar por 5 el nivel de hierro siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 6://Azufre
+                    if(aux.getDato().getAzufre()<=95){
+                        aux.getDato().setAzufre(aux.getDato().getAzufre()+5);// esto lo que hace es incrementar por 5 el nivel de azufre siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 7://Zinc
+                    if(aux.getDato().getZinc()<=95){
+                        aux.getDato().setZinc(aux.getDato().getZinc()+5);// esto lo que hace es incrementar por 5 el nivel de zinc siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 8://Fosforo
+                    if(aux.getDato().getFosforo()<=95){
+                        aux.getDato().setFosforo(aux.getDato().getFosforo()+5);// esto lo que hace es incrementar por 5 el nivel de fosforo siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 9://Boro
+                    if(aux.getDato().getBoro()<=95){
+                        aux.getDato().setBoro(aux.getDato().getBoro()+5);// esto lo que hace es incrementar por 5 el nivel de boro siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Seleccion de mineral equivocada");
+                break;
+            }
+            /*
+            
+                            + "Concentracion de Calcio [" +aux.getDato().getCalcio()+"]\n"
+                            + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
+                            + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
+                            + "Concentracion de Magnesio["+aux.getDato().getMagnesio()+"]\n"
+                            + "Concentracion de Hierro["+aux.getDato().getHierro()+"]\n"
+                            + "Concentracion de Azufre["+aux.getDato().getAzufre()+"]\n"
+                            + "Concentracion de Zinc["+aux.getDato().getZinc()+"]\n"
+                            + "Concentracion de Fosforo["+aux.getDato().getFosforo()+"]\n"
+                            + "Concentracion de Boro["+aux.getDato().getBoro()+"]\n\n";
+            */
+
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+        mostarLista(3);
+        }
     }
     
     
