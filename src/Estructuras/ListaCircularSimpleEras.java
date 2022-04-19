@@ -170,29 +170,36 @@ public class ListaCircularSimpleEras {
                     JOptionPane.showMessageDialog(null, "Seleccion de mineral equivocada");
                 break;
             }
-            /*
-            
-                            + "Concentracion de Calcio [" +aux.getDato().getCalcio()+"]\n"
-                            + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
-                            + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
-                            + "Concentracion de Magnesio["+aux.getDato().getMagnesio()+"]\n"
-                            + "Concentracion de Hierro["+aux.getDato().getHierro()+"]\n"
-                            + "Concentracion de Azufre["+aux.getDato().getAzufre()+"]\n"
-                            + "Concentracion de Zinc["+aux.getDato().getZinc()+"]\n"
-                            + "Concentracion de Fosforo["+aux.getDato().getFosforo()+"]\n"
-                            + "Concentracion de Boro["+aux.getDato().getBoro()+"]\n\n";
-            */
-
             aux=aux.getNext();
         }while(aux!=ultimo.getNext());
         mostarLista(3);
         }
     }
     
+        public void AgregarPesticida(int seleccion){
+            NodoEras aux;
+            aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+            do {
+            switch(seleccion){
+                case 1:
+                    aux.getDato().setTieneMaleza(false);
+                    break;
+                case 2:
+                    aux.getDato().setTieneHongos(false);
+                    break;
+                case 3:
+                    aux.getDato().setTieneinsectos(false);
+                    break;
+            }
+            aux=aux.getNext();
+            }while(aux!=ultimo.getNext());
+            mostarLista(2);//aca muestra si tiene alguna plaga o no
+            
+        }
     
     
     
-    //eliminar un Nodo de una lis
+    //eliminar un Nodo de una lista
     public boolean eliminar (Era persona){
         NodoEras actual;
         boolean encontrado = false;

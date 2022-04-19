@@ -134,7 +134,7 @@ public class OrganiTerra {
                                     eleccionEjecutarcambiosErasYcampo=Integer.parseInt(JOptionPane.showInputDialog("Ejecutar cambios a las eras y campo de cultivo\n"
                                             + "1.Escoger tipo de cultivo que se va a cultivar en el campo\n"
                                             + "2.Airear terreno\n"
-                                            + "3.Abonar la tierra\n"
+                                            + "3.Abonar la tierra (submenu)\n"
                                             + "4.Agregar pestizida\n"
                                             + "5.Agregar agua\n"
                                             + "6.Sembrar campo\n"
@@ -219,6 +219,52 @@ public class OrganiTerra {
                                                     listitaErasDelCampitoSeleccionado.incrementarMinerales(sleccionMineralaAbonar);
                                                 }catch(Exception e){eleccionAdministrarCampo=0;}
                                             }while(!(sleccionMineralaAbonar==10));
+                                        break;
+                                        case 4:
+                                            //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/4. agregar insecticida(submenu)
+                                            
+                                            
+                                            int selectorPesticida=0;
+                                            JOptionPane.showMessageDialog(null, "va a entrar al submenu de agregar pesticida");
+                                            do{
+                                                try{
+                                                    selectorPesticida=Integer.parseInt(JOptionPane.showInputDialog("Seleccione el mineral que desea incrementar la concentracion\n"
+                                                        + "1.herbicida\n"
+                                                        + "2.fungicida\n"
+                                                        + "3.insecticida\n"
+                                                        + "4.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo"));
+                                                    }catch(Exception e){selectorPesticida=0;}
+                                                    switch(selectorPesticida){
+                                                        case 1:
+                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner herbicida antes de ser aplicado a ver si hay hierbas");
+                                                            listitaErasDelCampitoSeleccionado.mostarLista(2);
+                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner herbicida");
+                                                            break;
+                                                        case 2:
+                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner fungicida antes de ser aplicado a ver si hay hongos");
+                                                            listitaErasDelCampitoSeleccionado.mostarLista(2);
+                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner fungicida");
+                                                            break;
+                                                        case 3:
+                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner insecticida antes de ser aplicado a ver si hay bichos");
+                                                            listitaErasDelCampitoSeleccionado.mostarLista(2);
+                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner insecticida");
+                                                            break;
+                                                        case 4:
+                                                            JOptionPane.showMessageDialog(null, "ha decidido regresar al menu de ejecucion de eras y campos de cultivo");
+                                                            break;
+                                                        default:
+                                                            JOptionPane.showMessageDialog(null, "digite una opcion valida");
+                                                            break;
+                                                    }
+                                                    if(selectorPesticida>=1&& selectorPesticida<=3){  
+                                                        listitaErasDelCampitoSeleccionado.AgregarPesticida(selectorPesticida);
+                                                    }
+                                                
+                                            }while(!(selectorPesticida==4));
+                                                     
+                                        break;
+                                        case 5:
                                     }
                                     
                                     }while(!(eleccionEjecutarcambiosErasYcampo==8));
