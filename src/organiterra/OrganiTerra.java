@@ -285,9 +285,11 @@ public class OrganiTerra {
                                                 }catch(Exception e){selectorPesticida=0;}
                                                 switch (selectoragua){
                                                     case 1:
+                                                        JOptionPane.showMessageDialog(null, "Activa el drenaje");
                                                         campito.setTienedrenaje(true);
                                                     break;
                                                     case 2:
+                                                        JOptionPane.showMessageDialog(null, "Activa la toma de agua");
                                                         campito.setTieneAgua(true);
                                                     break;
                                                     case 3:
