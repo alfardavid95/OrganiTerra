@@ -321,6 +321,57 @@ public class OrganiTerra {
                                         break;
                                         case 6:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/5. sembrar
+                                            boolean tieneSistemaAgua =false;
+                                            boolean tieneCultivoDefinido= false;
+                                            boolean noHayplagasEnLasEras= false;
+                                            boolean noHaceFaltaAbono= false;
+                                            String cosasQueHacenFaltaParaSembrar = "";
+                                            
+                                            //aca se revisa que el sistema de agua este presente
+                                            if(campito.isTieneAgua()&&campito.isTienedrenaje()){
+                                                tieneSistemaAgua=true;
+                                            }else{
+                                                cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++El sistema de agua y drenaje no esta listo y es posible que falte hidratacion en la tierra\n";
+                                            }
+                                            //aca se revisa que haya un tipo de cultivo definido
+                                            if(!campito.getTipoCultivo().equals("default")||!campito.getTipoCultivo().equals("")){
+                                                tieneCultivoDefinido =true;
+                                                
+                                            }else{
+                                                cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++El tipo de cultivo no esta definido\n";
+                                            }
+                                            //aca se revisa que no haya plagas en ninguna de las eras
+                                            if(listitaErasDelCampitoSeleccionado.revisionHayPlagasEnLasEras()){
+                                                noHayplagasEnLasEras = true;
+                                            }else{
+                                                cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++Hay plagas presentes en las eras\n";
+                                            }
+                                            //aca se revisa todos los minerales a ver que no haga falta nada 
+                                            if(listitaErasDelCampitoSeleccionado.revisionNoHacenFaltaMinerales()){
+                                                noHaceFaltaAbono =true;
+                                            }else{
+                                                cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++Hace falta que los minerales esten por arriba del 85\n";
+                                            }
+                                            //me falta aireacion
+                                            //me falta humedad 
+                                            //me falta PH
+                                            /*
+                                            cuando tenga todos estos voy a hacer un if que sea algo asi 
+                                            
+                                            if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&...aireacionbien...humedadbien ...phBien){
+                                                //sembrar cultivo
+                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
+                                                //agrego la fecha de siembra al campo de cultivo 
+                                                //agrego el estado de estar sembrado al campo de cultivo
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Revisiones que hacer antes de sembrar:\n"
+                                                        + cosasQueHacenFaltaParaSembrar);
+                                            }
+                                 
+                                            */
+
+                                            
+                                            
                                         break;
                                         case 7:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. cosechar

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author alfar
  */
 public class ListaCircularSimpleEras {
-    NodoEras ultimo;
+    public NodoEras ultimo;
     
     public ListaCircularSimpleEras(){
         ultimo=null;
@@ -127,6 +127,21 @@ public class ListaCircularSimpleEras {
         mostarLista(1);
         
     }
+    public boolean revisionHayPlagasEnLasEras(){
+        NodoEras aux;
+        boolean noHayPlagas = true;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        
+        do {
+            if(aux.getDato().isTieneHongos()||aux.getDato().isTieneMaleza()||aux.getDato().isTieneinsectos()){
+                noHayPlagas= false;
+            }
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+
+        return noHayPlagas;
+    }
+    
             
     
         public void incrementarMinerales(int mineralID){
@@ -214,6 +229,87 @@ public class ListaCircularSimpleEras {
             mostarLista(2);//aca muestra si tiene alguna plaga o no
             
         }
+    
+    public boolean revisionNoHacenFaltaMinerales(){
+        int valorMinimo=85;
+        NodoEras aux;
+        boolean banderaEstaBienDeCalcio =false;
+        boolean banderaEstaBienDenitrogeno =false;
+        boolean banderaEstaBienDePotasio =false;
+        boolean banderaEstaBienDeMagnesio =false;
+        boolean banderaEstaBienDeHierro =false;
+        boolean banderaEstaBienDeAzufre =false;
+        boolean banderaEstaBienDeZinc =false;
+        boolean banderaEstaBienDeFosforo =false;
+        boolean banderaEstaBienDeBoro =false;
+        boolean noHaceFaltaMinerales =false;
+        
+        
+        for(int mineralID=1;mineralID<=9;mineralID++){
+            
+        
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        do {
+            switch (mineralID){
+                case 1://calcio
+                    if(aux.getDato().getCalcio()<=valorMinimo && !banderaEstaBienDeCalcio){
+                        banderaEstaBienDeCalcio=true;
+                    }
+                break;
+                case 2://nitrogeno
+                    if(aux.getDato().getNitrogeno()<=valorMinimo && !banderaEstaBienDenitrogeno){
+                        banderaEstaBienDenitrogeno=true;
+                    }
+                break;
+                case 3://Potasio
+                    if(aux.getDato().getPotasio()<=valorMinimo && !banderaEstaBienDePotasio){
+                        banderaEstaBienDePotasio=true;// esto lo que hace es incrementar por 5 el nivel de potasio siempre y cuando sea menor o igual de 95
+                    }                    
+                break;
+                case 4://Magnesio
+                    if(aux.getDato().getMagnesio()<=valorMinimo && !banderaEstaBienDeMagnesio){
+                        banderaEstaBienDeMagnesio=true;// esto lo que hace es incrementar por 5 el nivel de magnesio siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 5://Hierro
+                    if(aux.getDato().getHierro()<=valorMinimo){
+                        banderaEstaBienDeHierro =true;// esto lo que hace es incrementar por 5 el nivel de hierro siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 6://Azufre
+                    if(aux.getDato().getAzufre()<=valorMinimo){
+                        banderaEstaBienDeAzufre=true;// esto lo que hace es incrementar por 5 el nivel de azufre siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 7://Zinc
+                    if(aux.getDato().getZinc()<=valorMinimo){
+                        banderaEstaBienDeZinc=true;// esto lo que hace es incrementar por 5 el nivel de zinc siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 8://Fosforo
+                    if(aux.getDato().getFosforo()<=valorMinimo){
+                        banderaEstaBienDeFosforo=true;// esto lo que hace es incrementar por 5 el nivel de fosforo siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                case 9://Boro
+                    if(aux.getDato().getBoro()<=valorMinimo){
+                        banderaEstaBienDeBoro=true;// esto lo que hace es incrementar por 5 el nivel de boro siempre y cuando sea menor o igual de 95
+                    }
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Seleccion de mineral equivocada");
+                break;
+            }
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+        }
+        
+        if(banderaEstaBienDeAzufre&&banderaEstaBienDeBoro&&banderaEstaBienDeCalcio&&banderaEstaBienDeFosforo&&
+           banderaEstaBienDeHierro&&banderaEstaBienDeMagnesio&&banderaEstaBienDePotasio&&banderaEstaBienDeZinc&&banderaEstaBienDenitrogeno){
+           noHaceFaltaMinerales =true; 
+        }   
+        return noHaceFaltaMinerales;
+    }
     
     
     
