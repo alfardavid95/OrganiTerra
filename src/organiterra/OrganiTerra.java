@@ -73,7 +73,8 @@ public class OrganiTerra {
                     
                     JOptionPane.showMessageDialog(null, "El campo de cultivo creado es:\n"
                             + "nombre: {"+campitoCultivo.getNombreCampoCultivo()+"}\n"
-                                    + "id: {"+campitoCultivo.getId()+"}");
+                                    + "id: {"+campitoCultivo.getId()+"}\n"
+                                            + "cantidad de eras: {"+campitoCultivo.getCantidadEras()+"}");
                     break; 
                     
                 case 2:
@@ -279,9 +280,9 @@ public class OrganiTerra {
                                                 selectoragua=Integer.parseInt(JOptionPane.showInputDialog("Desea conectar las fuentes de agua\n"
                                                         + "1.poner drenaje\n"
                                                         + "2.poner fuente de agua\n"
-                                                        + "3.Mostrar estado del agua y drenaje en el campo"
+                                                        + "3.Mostrar estado del agua y drenaje en el campo\n"
                                                         + "4.Agregar humedad a las eras\n"
-                                                        + "4.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo\n"));
+                                                        + "5.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo\n"));
                                                 }catch(Exception e){selectorPesticida=0;}
                                                 switch (selectoragua){
                                                     case 1:

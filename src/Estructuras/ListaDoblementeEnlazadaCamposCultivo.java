@@ -112,17 +112,19 @@ public class ListaDoblementeEnlazadaCamposCultivo {
        String s="\n";
        if (aux!=null) {
 
-                      s=s + "Nombre del Campo: "+aux.getCampito().getNombreCampoCultivo()+"\n"
-                        + "Id del Campo: "+aux.getCampito().getId()+"\n"
-                       + "Fecha de creacion: "+aux.getCampito().getFechaCreacionTerreno()
+                      s=s + "Nombre del Campo: {"+aux.getCampito().getNombreCampoCultivo()+"}\n"
+                        + "Id del Campo: {"+aux.getCampito().getId()+"}\n"
+                        + "Cantidad de Eras {"+aux.getCampito().getCantidadEras()+"}\n"
+                        + "Fecha de creacion: {"+aux.getCampito().getFechaCreacionTerreno()+"}"
                         + "\n<===========================>\n";
                 
            aux=aux.getNext();
            
            while(aux!=inicio){
-           s=s+"Nombre del Campo: "+aux.getCampito().getNombreCampoCultivo()+"\n"
-                        + "Id del Campo: "+aux.getCampito().getId()+"\n"
-                       + "Fecha de creacion: "+aux.getCampito().getFechaCreacionTerreno()
+           s=s + "Nombre del Campo: {"+aux.getCampito().getNombreCampoCultivo()+"}\n"
+                        + "Id del Campo: {"+aux.getCampito().getId()+"}\n"
+                        + "Cantidad de Eras {"+aux.getCampito().getCantidadEras()+"}\n"
+                        + "Fecha de creacion: {"+aux.getCampito().getFechaCreacionTerreno()+"}"
                         + "\n<===========================>\n";
            aux = aux.getNext();}
            JOptionPane.showMessageDialog(null, s);

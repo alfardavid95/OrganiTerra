@@ -85,11 +85,11 @@ public class CampoCultivo {
     }
 
     public int getCantidadEras() {
-        return cantidadEras;
+        return canteras;
     }
 
     public void setCantidadEras(int cantidadEras) {
-        this.cantidadEras = cantidadEras;
+        this.canteras = cantidadEras;
     }
 
     public boolean isNotienepiedras() {
