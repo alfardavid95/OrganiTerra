@@ -41,6 +41,7 @@ public class CampoCultivo {
             Era era = new Era((i+1));
             listaEras.insertar(era);
         }
+        this.tipoCultivo = "";
         
     }
 

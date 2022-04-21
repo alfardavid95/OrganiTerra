@@ -69,7 +69,7 @@ public class ListaCircularSimpleEras {
             case 3://Revisar Minerales\n"
                 do {
                     cadenaDeCaracteres = cadenaDeCaracteres + "La era con el ID ["+ aux.getDato().getId()+"]\n"
-                            + "Tiene las siguientes concentraciones de minerales\n"
+                            + "Tiene las siguientes concentraciones de minerales:\n"
                             + "Concentracion de Calcio [" +aux.getDato().getCalcio()+"]\n"
                             + "Concentracion de Nitrogeno["+aux.getDato().getNitrogeno()+"]\n"
                             + "Concentracion de Potasio["+aux.getDato().getPotasio()+"]\n"
@@ -78,7 +78,44 @@ public class ListaCircularSimpleEras {
                             + "Concentracion de Azufre["+aux.getDato().getAzufre()+"]\n"
                             + "Concentracion de Zinc["+aux.getDato().getZinc()+"]\n"
                             + "Concentracion de Fosforo["+aux.getDato().getFosforo()+"]\n"
-                            + "Concentracion de Boro["+aux.getDato().getBoro()+"]\n\n";
+                            + "Concentracion de Boro["+aux.getDato().getBoro()+"]\n";
+                    
+                            if(aux.getDato().getCalcio()<85|| aux.getDato().getNitrogeno()<85 || aux.getDato().getPotasio()<85 || aux.getDato().getMagnesio()<85||aux.getDato().getHierro()<85||
+                                    aux.getDato().getAzufre()<85||aux.getDato().getZinc()<85||aux.getDato().getFosforo()<85||aux.getDato().getBoro()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Revise:";
+                            }else{
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Concentracion saludable de minerales en esta era";
+                            }
+                            if(aux.getDato().getCalcio()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "calcio, ";
+                            }
+                            if(aux.getDato().getNitrogeno()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Nitrogeno, ";
+                            }
+                            if(aux.getDato().getPotasio()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Potasio, ";
+                            }
+                            if(aux.getDato().getMagnesio()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Magnesio, ";
+                            }
+                            if(aux.getDato().getHierro()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Hierro, ";
+                            }
+                            if(aux.getDato().getAzufre()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Azufre, ";
+                            }
+                            if(aux.getDato().getZinc()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Zinc, ";
+                            }
+                            if(aux.getDato().getFosforo()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Fosforo, ";
+                            }
+                            if(aux.getDato().getBoro()<85){
+                                cadenaDeCaracteres = cadenaDeCaracteres + "Boro, ";
+                            }
+                            cadenaDeCaracteres = cadenaDeCaracteres + "\n\n";
+                            
+                            
                     aux=aux.getNext();
                 }while(aux!=ultimo.getNext());                  
                 break;
@@ -230,87 +267,268 @@ public class ListaCircularSimpleEras {
             
         }
     
-    public boolean revisionNoHacenFaltaMinerales(){
+    public boolean revisionNoHacenFaltaMinerales(int cantEras){
         int valorMinimo=85;
         NodoEras aux;
-        boolean banderaEstaBienDeCalcio =false;
-        boolean banderaEstaBienDenitrogeno =false;
-        boolean banderaEstaBienDePotasio =false;
-        boolean banderaEstaBienDeMagnesio =false;
-        boolean banderaEstaBienDeHierro =false;
-        boolean banderaEstaBienDeAzufre =false;
-        boolean banderaEstaBienDeZinc =false;
-        boolean banderaEstaBienDeFosforo =false;
-        boolean banderaEstaBienDeBoro =false;
+        
+        Boolean[] EstaBienDeCalcio = new Boolean[cantEras];
+        Boolean[] EstaBienDenitrogeno = new Boolean[cantEras];
+        Boolean[] EstaBienDePotasio = new Boolean[cantEras];
+        Boolean[] EstaBienDeMagnesio = new Boolean[cantEras];
+        Boolean[] EstaBienDeHierro = new Boolean[cantEras];
+        Boolean[] EstaBienDeAzufre = new Boolean[cantEras];
+        Boolean[] EstaBienDeZinc = new Boolean[cantEras];
+        Boolean[] EstaBienDeFosforo = new Boolean[cantEras];
+        Boolean[] EstaBienDeBoro = new Boolean[cantEras];
+        
+        
+        boolean banderaEstaMalDeCalcio = false;
+        boolean banderaEstamalDenitrogeno = false;
+        boolean banderaEstaMalDePotasio = false;
+        boolean banderaEstaMalDeMagnesio = false;
+        boolean banderaEstaMalDeHierro = false;
+        boolean banderaEstaMalDeAzufre = false;
+        boolean banderaEstaMalDeZinc = false;
+        boolean banderaEstaMalDeFosforo = false;
+        boolean banderaEstaMalDeBoro = false;
         boolean noHaceFaltaMinerales =false;
         
         
-        for(int mineralID=1;mineralID<=9;mineralID++){
-            
-        
-        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
-        do {
-            switch (mineralID){
-                case 1://calcio
-                    if(aux.getDato().getCalcio()<=valorMinimo && !banderaEstaBienDeCalcio){
-                        banderaEstaBienDeCalcio=true;
-                    }
-                break;
-                case 2://nitrogeno
-                    if(aux.getDato().getNitrogeno()<=valorMinimo && !banderaEstaBienDenitrogeno){
-                        banderaEstaBienDenitrogeno=true;
-                    }
-                break;
-                case 3://Potasio
-                    if(aux.getDato().getPotasio()<=valorMinimo && !banderaEstaBienDePotasio){
-                        banderaEstaBienDePotasio=true;// esto lo que hace es incrementar por 5 el nivel de potasio siempre y cuando sea menor o igual de 95
-                    }                    
-                break;
-                case 4://Magnesio
-                    if(aux.getDato().getMagnesio()<=valorMinimo && !banderaEstaBienDeMagnesio){
-                        banderaEstaBienDeMagnesio=true;// esto lo que hace es incrementar por 5 el nivel de magnesio siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                case 5://Hierro
-                    if(aux.getDato().getHierro()<=valorMinimo){
-                        banderaEstaBienDeHierro =true;// esto lo que hace es incrementar por 5 el nivel de hierro siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                case 6://Azufre
-                    if(aux.getDato().getAzufre()<=valorMinimo){
-                        banderaEstaBienDeAzufre=true;// esto lo que hace es incrementar por 5 el nivel de azufre siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                case 7://Zinc
-                    if(aux.getDato().getZinc()<=valorMinimo){
-                        banderaEstaBienDeZinc=true;// esto lo que hace es incrementar por 5 el nivel de zinc siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                case 8://Fosforo
-                    if(aux.getDato().getFosforo()<=valorMinimo){
-                        banderaEstaBienDeFosforo=true;// esto lo que hace es incrementar por 5 el nivel de fosforo siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                case 9://Boro
-                    if(aux.getDato().getBoro()<=valorMinimo){
-                        banderaEstaBienDeBoro=true;// esto lo que hace es incrementar por 5 el nivel de boro siempre y cuando sea menor o igual de 95
-                    }
-                break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Seleccion de mineral equivocada");
-                break;
+        //revisar Calcio
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getCalcio()>=valorMinimo){
+                EstaBienDeCalcio[i]=true;
+                //System.out.println("calcio true");
+            }else{
+                EstaBienDeCalcio[i]=false;
+               // System.out.println("calcio false");
             }
-            aux=aux.getNext();
-        }while(aux!=ultimo.getNext());
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeCalcio[i]==false){
+                banderaEstaMalDeCalcio=true;
+            }
+            //System.out.println("EstaBienDeCalcio[i]= "+ EstaBienDeCalcio[i]+"\n"
+            //        + "banderaMalCalcio = " + banderaEstaMalDeCalcio);
         }
         
-        if(banderaEstaBienDeAzufre&&banderaEstaBienDeBoro&&banderaEstaBienDeCalcio&&banderaEstaBienDeFosforo&&
-           banderaEstaBienDeHierro&&banderaEstaBienDeMagnesio&&banderaEstaBienDePotasio&&banderaEstaBienDeZinc&&banderaEstaBienDenitrogeno){
-           noHaceFaltaMinerales =true; 
-        }   
+        //revisar  nitrogeno
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getNitrogeno()>=valorMinimo){
+                EstaBienDenitrogeno[i]=true;
+               // System.out.println("nitrogeno true");
+            }else{
+                EstaBienDenitrogeno[i]=false;
+               // System.out.println("nitrogeno false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDenitrogeno[i]==false){
+                banderaEstamalDenitrogeno=true;
+            }
+            //System.out.println("EstaBienDeN[i]= "+ EstaBienDenitrogeno[i]+"\n"
+            //        + "banderaMalN = " + banderaEstamalDenitrogeno);
+        }
+        
+        //revisarPotasio
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getPotasio()>=valorMinimo){
+                EstaBienDePotasio[i]=true;
+                //System.out.println("potasio true");
+            }else{
+                EstaBienDePotasio[i]=false;
+                //System.out.println("potasio false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDePotasio[i]==false){
+                banderaEstaMalDePotasio=true;
+            }
+            //System.out.println("EstaBienDepotasio[i]= "+ EstaBienDePotasio[i]+"\n"
+            //        + "banderaMalPotasio = " + banderaEstaMalDePotasio);
+        }
+        //revisar magnesio
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getMagnesio()>=valorMinimo){
+                EstaBienDeMagnesio[i]=true;
+                //System.out.println("magnesio true");
+            }else{
+                EstaBienDeMagnesio[i]=false;
+                //System.out.println("magnesio false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeMagnesio[i]==false){
+                banderaEstaMalDeMagnesio=true;
+            }
+            //System.out.println("EstaBienDemagnesio[i]= "+ EstaBienDeMagnesio[i]+"\n"
+                    //+ "banderaMalMagnesio = " + banderaEstaMalDeMagnesio);
+        }
+        //revisarHierro
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getHierro()>=valorMinimo){
+                EstaBienDeHierro[i]=true;
+                //System.out.println("hierro true");
+            }else{
+                EstaBienDeHierro[i]=false;
+                //System.out.println("hierro false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeHierro[i]==false){
+                banderaEstaMalDeHierro=true;
+            }
+            //System.out.println("EstaBienDeHierro[i]= "+ EstaBienDeHierro[i]+"\n"
+                    //+ "banderaMalHierro = " + banderaEstaMalDeHierro);
+        }
+        //revisar Azufre
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getAzufre()>=valorMinimo){
+                EstaBienDeAzufre[i]=true;
+                //System.out.println("azufre true");
+            }else{
+                EstaBienDeAzufre[i]=false;
+                //System.out.println("azufre false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeAzufre[i]==false){
+                banderaEstaMalDeAzufre=true;
+            }
+            //System.out.println("EstaBienDeAzufre[i]= "+ EstaBienDeAzufre[i]+"\n"
+                    //+ "banderaMalAzufre = " + banderaEstaMalDeAzufre);
+        }
+        
+        //revisar Zinc
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getZinc()>=valorMinimo){
+                EstaBienDeZinc[i]=true;
+                //System.out.println("zinc true");
+            }else{
+                EstaBienDeZinc[i]=false;
+                //System.out.println("zinc false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeZinc[i]==false){
+                banderaEstaMalDeZinc=true;
+            }
+        }
+        //revisar Fosforo
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getFosforo()>=valorMinimo){
+                EstaBienDeFosforo[i]=true;
+                //System.out.println("fosforo true");
+            }else{
+                EstaBienDeFosforo[i]=false;
+                //System.out.println("fosforo false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeFosforo[i]==false){
+                banderaEstaMalDeFosforo=true;
+            }
+        }
+        //revisar Boro
+        aux = ultimo.getNext();
+        for (int i=0; i<cantEras; i++){
+            if(aux.getDato().getBoro()>=valorMinimo){
+                EstaBienDeBoro[i]=true;
+                //System.out.println("boro true");
+            }else{
+                EstaBienDeBoro[i]=false;
+                //System.out.println("boro false");
+            }
+            aux= aux.getNext();
+        }
+        for (int i=0; i<cantEras; i++){
+            if(EstaBienDeBoro[i]==false){
+                banderaEstaMalDeBoro=true;
+            }
+        }
+        
+        if(banderaEstaMalDeAzufre||banderaEstaMalDeBoro||banderaEstaMalDeCalcio||banderaEstaMalDeFosforo||
+           banderaEstaMalDeHierro||banderaEstaMalDeMagnesio||banderaEstaMalDePotasio||banderaEstaMalDeZinc||banderaEstamalDenitrogeno){
+           noHaceFaltaMinerales =false;
+            //System.out.println("no se puede todavia");
+        }else{
+            noHaceFaltaMinerales =true;
+            //System.out.println("todo esta permitido");
+        }
         return noHaceFaltaMinerales;
     }
     
+    public boolean tieneMalaAireacionEnEras(int cantEras){
+        Boolean[] estaBienDeAireacion = new Boolean[cantEras];
+        boolean tieneMalaAireacionBandera = false;
+        NodoEras aux;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        int counter = 0;
+        do {
+            
+            if(aux.getDato().getAireacion()>=85 ){
+                estaBienDeAireacion[counter] = true;
+                System.out.println("aireacion mayor o igual de 85");
+            }else{
+                estaBienDeAireacion[counter] = false;
+                System.out.println("aireacion menor que 85");
+            }
+            aux= aux.getNext();
+            counter++;
+        }while(aux!=ultimo.getNext());
+        
+        for(int i= 0; i<cantEras; i++){
+            if(!estaBienDeAireacion[i]){
+                
+                tieneMalaAireacionBandera= true;
+            }
+            System.out.println("estaBienDeAireacion[i] =" + estaBienDeAireacion[i]+"\n"
+            +"tieneMalaAireacionBandera ="+ tieneMalaAireacionBandera);
+        }
+        
+        return tieneMalaAireacionBandera;
+    }
+    
+    public boolean tieneMalaHumedad(int cantEras){
+        Boolean[] estaBienDeHumedad= new Boolean[cantEras];
+        boolean tieneMalaHumedad = false;
+        NodoEras aux;
+        aux = ultimo.getNext();// con esto apuntamos al primero de toda la lista
+        int counter = 0;
+        do {
+            if(aux.getDato().getNivelDehumedad()>=85 ){
+                estaBienDeHumedad[counter] = true;
+            }else{
+                estaBienDeHumedad[counter] = false;
+            }
+            aux= aux.getNext();
+            counter++;
+        }while(aux!=ultimo.getNext());
+        
+        for(int i= 0; i<cantEras; i++){
+            if(estaBienDeHumedad[i]==false){
+                tieneMalaHumedad= true;
+            }
+        }        
+        
+        return tieneMalaHumedad;
+    }
     
     
     //eliminar un Nodo de una lista

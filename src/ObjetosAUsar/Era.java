@@ -21,7 +21,7 @@ public class Era {
     boolean tieneHongos;
     boolean tieneinsectos;
     int valorMaximoParametro = 100;
-    int valorMinimoparametro = 50;
+    int valorMinimoparametro = 75;
     int id;
     
     public Era(int id){
