@@ -330,8 +330,8 @@ public class OrganiTerra {
                                             boolean tieneCultivoDefinido= false;
                                             boolean noHayplagasEnLasEras= false;
                                             boolean noHaceFaltaAbono= false;
-                                            boolean tieneMalaAireacion = false;
-                                            boolean tieneMalaHumedad = false;
+                                            boolean noTieneMalaAireacion = false;
+                                            boolean noTieneMalaHumedad = false;
                                             String cosasQueHacenFaltaParaSembrar = "";
                                             
                                             //aca se revisa que el sistema de agua este presente
@@ -341,7 +341,8 @@ public class OrganiTerra {
                                                 cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++El sistema de agua y drenaje no esta listo y es posible que falte hidratacion en la tierra\n";
                                             }
                                             //aca se revisa que haya un tipo de cultivo definido
-                                            if(!(campito.getTipoCultivo().equals("default"))||!(campito.getTipoCultivo().equals(""))){
+                                            if(!(campito.getTipoCultivo().equals(""))){
+                                                System.out.println("campito.tipocultivo = {"+campito.getTipoCultivo()+"}<-----" );
                                                 tieneCultivoDefinido =true;
                                                 
                                             }else{
@@ -361,26 +362,33 @@ public class OrganiTerra {
                                             }
                                             //aca comprueba en todas las eras a ver si tiene aireacion mas alla del 85
                                             if(!listitaErasDelCampitoSeleccionado.tieneMalaAireacionEnEras(campito.getCantidadEras())){
-                                                tieneMalaAireacion = true;
+                                                noTieneMalaAireacion = true;
                                             }else{
                                                 cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++Hay mal nivel de aireacion de la tierra, es menor de 85, debe tener un valor superior a 85\n";
                                             }
                                             //aca comprueba en todas las eras a ver si tiene humedad mas alla del 85
                                             if(!listitaErasDelCampitoSeleccionado.tieneMalaHumedad(campito.getCantidadEras())){
-                                                tieneMalaHumedad = true;
+                                                noTieneMalaHumedad = true;
                                             }else{
                                                 cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++Hay mal nivel de humedad de la tierra, es menor de 85, debe tener un valor superior a 85\n";
                                             }
                                             
-                                            //me falta aireacion
-                                            //me falta humedad 
+
                                             //me falta PH
                                             
                                             
                                             
-                                            //cuando tenga todos estos voy a hacer un if que sea algo asi 
+                                            //cuando tenga todos estos voy a hacer un if que sea algo asi
+                                            System.out.println("\n\nIf para poder Sembrar"
+                                                    + "noTieneMalaHumedad(true)= " +noTieneMalaHumedad+ "\n"
+                                                    + "noTieneMalaAireacion(true) = "+ noTieneMalaAireacion +"\n"
+                                                    + "noHaceFaltaAbono(true) = "+ noHaceFaltaAbono+"\n"
+                                                    + "noHayplagasEnLasEras(true) = "+noHayplagasEnLasEras+"\n"
+                                                    + "tieneCultivoDefinido(true) = " +tieneCultivoDefinido+"\n"
+                                                    + "tieneSistemaAgua (true) = " +tieneSistemaAgua+ "\n" );
                                             
-                                            if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&(!tieneMalaAireacion)&&(!tieneMalaHumedad)){
+                                            
+                                            if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad){
                                                 //sembrar cultivo
                                                 JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
                                                 //agrego la fecha de siembra al campo de cultivo
