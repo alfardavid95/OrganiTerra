@@ -378,7 +378,7 @@ public class OrganiTerra {
                                             
                                             
                                             
-                                            //cuando tenga todos estos voy a hacer un if que sea algo asi
+                                            //cuando tenga todos estos voy a hacer un if que permita sembrar si se cumplen todas estas condiciones
                                             System.out.println("\n\nIf para poder Sembrar"
                                                     + "noTieneMalaHumedad(true)= " +noTieneMalaHumedad+ "\n"
                                                     + "noTieneMalaAireacion(true) = "+ noTieneMalaAireacion +"\n"
@@ -389,8 +389,7 @@ public class OrganiTerra {
                                             
                                             
                                             if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad){
-                                                //sembrar cultivo
-                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
+                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");//sembrar cultivo
                                                 //agrego la fecha de siembra al campo de cultivo
                                                 //agrego la fecha de cosecha al campo de cultivo
                                                 //agrego el estado de estar sembrado al campo de cultivo
