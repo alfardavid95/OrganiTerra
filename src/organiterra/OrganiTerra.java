@@ -418,47 +418,7 @@ public class OrganiTerra {
                                                 JOptionPane.showMessageDialog(null, "Aun no puede sembrar"
                                                         + "Revisiones que hacer antes de sembrar:\n"
                                                         + cosasQueHacenFaltaParaSembrar);
-                                            }
-                                            
-                                            /*
-                                            
-                                            switch(opcionTipoCultiivo){
-                                                case 1:
-                                                //1:Papa
-                                                tipoCultivo = "Papa";
-                                                break;
-                            
-                                                case 2:
-                                                //2.Chayote
-                                                tipoCultivo = "Sandia";
-                                                break;
-                            
-                                                case 3:
-                                                //3.Culantro
-                                                tipoCultivo = "Melon";
-                                                break;
-                            
-                                                case 4:
-                                                //4.Zanahoria
-                                                tipoCultivo = "Zanahoria";
-                                                break;
-                            
-                                                case 5:
-                                                //5.Trigo
-                                                tipoCultivo = "Trigo";
-                                                break;
-                            
-                                                case 6:
-                                                //6.Fresa
-                                                tipoCultivo = "Fresa";
-                                                break;
-                            
-                                                default:
-                                                tipoCultivo = "default";
-                                                break;
-                                            }   
-                                            */
-           
+                                            }                                                     
                                         break;
                                         case 7:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. cosechar
