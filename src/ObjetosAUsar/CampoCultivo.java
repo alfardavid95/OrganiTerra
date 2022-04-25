@@ -28,6 +28,8 @@ public class CampoCultivo {
     boolean noestaSucio = false;
     int canteras;
     ListaCircularSimpleEras listaEras = new ListaCircularSimpleEras();
+    Cosecha cosechita = new Cosecha();
+    boolean estaSembrado;
 
     public CampoCultivo() {
     }
@@ -60,6 +62,30 @@ public class CampoCultivo {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getCanteras() {
+        return canteras;
+    }
+
+
+    public Cosecha getCosechita() {
+        return cosechita;
+    }
+
+    public void setCosechita(Cosecha cosechita) {
+        this.cosechita = cosechita;
+    }
+
+    public boolean isEstaSembrado() {
+        return estaSembrado;
+    }
+
+    public void setEstaSembrado(boolean estaSembrado) {
+        this.estaSembrado = estaSembrado;
+    }
+    
+    
+    
 
     public Date getFechaCosecha() {
         return fechaCosecha;

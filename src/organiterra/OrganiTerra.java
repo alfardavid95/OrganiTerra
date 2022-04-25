@@ -389,14 +389,75 @@ public class OrganiTerra {
                                             
                                             
                                             if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad){
-                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");//sembrar cultivo
+                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
+                                                
                                                 //agrego la fecha de siembra al campo de cultivo
-                                                //agrego la fecha de cosecha al campo de cultivo
+                                                Calendar calFechaSiembra = Calendar.getInstance();
+                                                Date dateSetFechaSiembra = calFechaSiembra.getTime();                                                
+                                                campito.getCosechita().setFechacultivo(dateSetFechaSiembra);
+                                                
+                                                //agrego la fecha de cosecha al campo de cultivo depende del cultivo sembrado
+                                                //si el cultivo es papa, sandia, melon o zanahoria dura 90 dias ,si no dura 70
+                                                if((campito.getTipoCultivo().equals("Papa"))||(campito.getTipoCultivo().equals("Sandia"))||(campito.getTipoCultivo().equals("Zanahoria"))||(campito.getTipoCultivo().equals("Melon"))){
+                                                    
+                                                    calFechaSiembra.add(Calendar.DAY_OF_MONTH, 90);
+
+                                                }else{
+                                                    calFechaSiembra.add(Calendar.DAY_OF_MONTH, 70);
+                                                }
+                                                    Date dateFechaCosecha = calFechaSiembra.getTime();
+                                                    campito.getCosechita().setFechacosecha(dateFechaCosecha);
+                                                    
                                                 //agrego el estado de estar sembrado al campo de cultivo
+                                                campito.setEstaSembrado(true);
+                                                //fecha de cosecha puesta
+                                                System.out.println("fecha cosecha = " + dateFechaCosecha);
+                                                
+                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");//sembrar cultivo
                                             }else{
-                                                JOptionPane.showMessageDialog(null, "Revisiones que hacer antes de sembrar:\n"
+                                                JOptionPane.showMessageDialog(null, "Aun no puede sembrar"
+                                                        + "Revisiones que hacer antes de sembrar:\n"
                                                         + cosasQueHacenFaltaParaSembrar);
                                             }
+                                            
+                                            /*
+                                            
+                                            switch(opcionTipoCultiivo){
+                                                case 1:
+                                                //1:Papa
+                                                tipoCultivo = "Papa";
+                                                break;
+                            
+                                                case 2:
+                                                //2.Chayote
+                                                tipoCultivo = "Sandia";
+                                                break;
+                            
+                                                case 3:
+                                                //3.Culantro
+                                                tipoCultivo = "Melon";
+                                                break;
+                            
+                                                case 4:
+                                                //4.Zanahoria
+                                                tipoCultivo = "Zanahoria";
+                                                break;
+                            
+                                                case 5:
+                                                //5.Trigo
+                                                tipoCultivo = "Trigo";
+                                                break;
+                            
+                                                case 6:
+                                                //6.Fresa
+                                                tipoCultivo = "Fresa";
+                                                break;
+                            
+                                                default:
+                                                tipoCultivo = "default";
+                                                break;
+                                            }   
+                                            */
            
                                         break;
                                         case 7:
