@@ -147,6 +147,7 @@ public class OrganiTerra {
                                     
                                     switch (eleccionEjecutarcambiosErasYcampo){
                                         case 1: //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/1.Elija tipo de cultivo
+                                            if(!campito.isEstaSembrado()){
                                             int opcionTipoCultiivo =0;
                                             do{
                                                 try{
@@ -203,6 +204,9 @@ public class OrganiTerra {
                                             JOptionPane.showMessageDialog(null, "Tiene que escoger un tipo de cultivo valido");
                                             }
                                             }while((opcionTipoCultiivo>=7)||(opcionTipoCultiivo<=0));
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Ya el campo de cultivo esta sembrado");
+                                            }
                                         break;
                                         
                                         case 2://MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/2.Airear terreno
@@ -470,7 +474,7 @@ public class OrganiTerra {
                                     +"2. Revisar Plagas\n"//se ve en la lista de eras
                                     +"3. Revisar Minerales\n"//se ve en la lista de eras
                                     +"4. Revisar tipo de suelo de cada era\n"//se ve en la lista de eras
-                                    +"5. Revisar tipo de cultivo actual, fecha de siembra y cosecha y cuantos dias faltan para recoger la cosecha\n"//se se jala del objeto campito
+                                    +"5. Revisar tipo de cultivo actual, fecha de siembra y cosecha y estado de siembra\n"//se se jala del objeto campito y campito.cosecha
                                     +"6. Revisar drenaje e irrigacion de campo de cultivo\n"//se se jala del objeto campito
                                     +"7. Salir al menu de administracion de campo\n"));
                                     
@@ -480,10 +484,17 @@ public class OrganiTerra {
                                             }else if(selector_deVisualizacion<salirEscanearCampodeCultivoEras ){
                                                 switch(selector_deVisualizacion){
                                                     case 5:
-                                                        JOptionPane.showMessageDialog(null, "Nombre de campo de cultivo: [" + campito.getNombreCampoCultivo()+"]\n"
+                                                        String mostarInfo = "";
+                                                        mostarInfo = "Nombre de campo de cultivo: [" + campito.getNombreCampoCultivo()+"]\n"
                                                                 + "ID del campo de cultivo: [" + campito.getId()+"]\n"
-                                                                + "Tipo de cultivo:["+campito.getTipoCultivo()+"] \n"
-                                                                + "falta poner la fecha de siembra y la fecha esperada de cosecha y los dias que hacen falta a partir de la fecha de hoy");
+                                                                + "Tipo de cultivo:["+campito.getTipoCultivo()+"] \n";
+                                                        if(campito.isEstaSembrado()){
+                                                            mostarInfo= mostarInfo + "fecha de siembra ["+campito.getCosechita().getFechacultivo()+"]\n"
+                                                                + "fecha de cosecha ["+campito.getCosechita().getFechacosecha()+"]\n";
+                                                        }
+                                                        mostarInfo=mostarInfo+"esta sembrado: ["+campito.isEstaSembrado()+"]\n";
+                                                        
+                                                        JOptionPane.showMessageDialog(null, mostarInfo);
                                                         break;
                                                     case 6:
                                                         JOptionPane.showMessageDialog(null, "Nombre de campo de cultivo: [" + campito.getNombreCampoCultivo()+"]\n"
