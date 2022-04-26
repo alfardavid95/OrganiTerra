@@ -30,7 +30,7 @@ public class OrganiTerra {
                 int opcionMainMenu;
                 int opcionInterna;
                 int IntCantidadEras;
-                Date fechaDeHoy;
+                Calendar fechaDeHoy = Calendar.getInstance();
                 String tipoCultivo;
                 int cantEras;
                 int cantidadEras;
@@ -49,14 +49,15 @@ public class OrganiTerra {
                     + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo (sub-menu)\n"
                     + "4. Eliminar campo de cultivo\n"
-                    + "5. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
+                    + "5. Incrementar la fecha dee hoy (esto es para hacer una demostracion)\n"
+                    + "6. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
             
             switch(opcionMainMenu ){
                 case 1:
                     //Menu Principal/1.Crear campo de cultivo nuevo
                     JOptionPane.showMessageDialog(null,"Ha elegido crear un campo de cultivo");
-                    Calendar calFechacreacionTerreno = Calendar.getInstance();
-                    Date dateCreacionTerreno = calFechacreacionTerreno.getTime();
+                    
+                    Date dateCreacionTerreno = fechaDeHoy.getTime();
                     
                     nombreCampoCultivo = JOptionPane.showInputDialog("Digite el nombre de campo del campo cultivo");
                     
@@ -326,6 +327,10 @@ public class OrganiTerra {
                                         break;
                                         case 6:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. sembrar
+                                            if(!campito.isEstaSembrado()){
+                                                
+                                            
+                                            boolean bypass = true;
                                             boolean tieneSistemaAgua =false;
                                             boolean tieneCultivoDefinido= false;
                                             boolean noHayplagasEnLasEras= false;
@@ -388,40 +393,56 @@ public class OrganiTerra {
                                                     + "tieneSistemaAgua (true) = " +tieneSistemaAgua+ "\n" );
                                             
                                             
-                                            if (tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad){
+                                            if ((tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad)|| bypass){
                                                 JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
                                                 
-                                                //agrego la fecha de siembra al campo de cultivo
-                                                Calendar calFechaSiembra = Calendar.getInstance();
-                                                Date dateSetFechaSiembra = calFechaSiembra.getTime();                                                
-                                                campito.getCosechita().setFechacultivo(dateSetFechaSiembra);
+                                                //agrego la fecha del dia de hoy a la fecha de la siembra     
+                                
+                                                Calendar fechaDeCosecha= (Calendar)fechaDeHoy.clone();// aca igualo la fechade cosecha de la fecha de hoy con la de la cosecha creando otra instancia para cosecha para despues incrementar los valores de cosecha
+                                                Date dateSetFechaSiembra = fechaDeHoy.getTime(); //aca tomamos el valor de calendar de fecha de Hoy y lo convertimos en Date
+                                                campito.getCosechita().setFechacultivo(dateSetFechaSiembra);//aca asigno el valor de la fecha de siembra
                                                 
                                                 //agrego la fecha de cosecha al campo de cultivo depende del cultivo sembrado
                                                 //si el cultivo es papa, sandia, melon o zanahoria dura 90 dias ,si no dura 70
                                                 if((campito.getTipoCultivo().equals("Papa"))||(campito.getTipoCultivo().equals("Sandia"))||(campito.getTipoCultivo().equals("Zanahoria"))||(campito.getTipoCultivo().equals("Melon"))){
                                                     
-                                                    calFechaSiembra.add(Calendar.DAY_OF_MONTH, 90);
+                                                    fechaDeCosecha.add(Calendar.DATE, 90);// defino la fecha de la cosecha en 90 dias 
 
                                                 }else{
-                                                    calFechaSiembra.add(Calendar.DAY_OF_MONTH, 70);
+                                                    fechaDeCosecha.add(Calendar.DATE, 70);// defino la fecha de la cosecha en 70 dias
                                                 }
-                                                    Date dateFechaCosecha = calFechaSiembra.getTime();
-                                                    campito.getCosechita().setFechacosecha(dateFechaCosecha);
+                                                    
+                                                    Date dateFechaCosecha = fechaDeCosecha.getTime();//aca solo jala la fecha cosecha en calendar a convertirla a Date
+                                                    campito.getCosechita().setFechacosecha(dateFechaCosecha);//aca le pone la fecha de la cosecha al campo
                                                     
                                                 //agrego el estado de estar sembrado al campo de cultivo
                                                 campito.setEstaSembrado(true);
                                                 //fecha de cosecha puesta
+                                                System.out.println("fecha siembra = " + dateSetFechaSiembra);
                                                 System.out.println("fecha cosecha = " + dateFechaCosecha);
                                                 
-                                                JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");//sembrar cultivo
+                                                
                                             }else{
                                                 JOptionPane.showMessageDialog(null, "Aun no puede sembrar"
                                                         + "Revisiones que hacer antes de sembrar:\n"
                                                         + cosasQueHacenFaltaParaSembrar);
-                                            }                                                     
+                                            }
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Ya se encuentra sembrado, debe esperar a la cosecha para volver a Sembrar");
+                                            }
                                         break;
                                         case 7:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. cosechar
+                                            //si la fecha actual es menor que le fecha de la cosecha no se puede cosechar
+                                            Date dateCosecha = campito.getFechaCosecha();//llamamos a la fecha de la cosecha del campo
+                                            Calendar fechaCalendarCosecha=convertDatetoCalendar(dateCosecha);//la convertimos en tipo calendar
+                                            
+                                            if(fechaDeHoy.after(fechaCalendarCosecha)){
+                                                JOptionPane.showMessageDialog(null, "Si puede cosechar");
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Aun debe esperar X cantidad de dias para la cosecha");// tengo que arreglar lo de X
+                                            }
+                          
                                         break;
                                         case 8:
                                             JOptionPane.showMessageDialog(null, "Sale al menu de administracion de campo de cultivo");
@@ -520,6 +541,14 @@ public class OrganiTerra {
                     }
                     break;
                 case 5:
+                    Date fechaDateHoy=fechaDeHoy.getTime();
+                    JOptionPane.showMessageDialog(null, "fecha de hoy antes del cambio: " +fechaDateHoy);
+                    int diasAIncrementar=Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de dias que va a incrementar"));
+                    fechaDeHoy.add(Calendar.DATE, diasAIncrementar);
+                    fechaDateHoy=fechaDeHoy.getTime();
+                    JOptionPane.showMessageDialog(null, "fecha de hoy despues del cambio: " +fechaDateHoy);
+                    break;
+                case 6:
                     //5.Salir
                     JOptionPane.showMessageDialog(null, "Cerrando aplicación...");
                     break;
@@ -529,7 +558,12 @@ public class OrganiTerra {
                 
             }
             
-        }while(opcionMainMenu != 5);
+        }while(opcionMainMenu != 6);
+    }
+    public static Calendar convertDatetoCalendar(Date d){                                     
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);                                 
+        return   cal;
     }
         
 }

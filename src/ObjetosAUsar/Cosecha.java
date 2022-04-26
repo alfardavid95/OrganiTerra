@@ -13,24 +13,24 @@ import java.util.Date;
  */
 public class Cosecha {
     String tipoCultivo;
-    int idCosecha;
+
     Date fechacultivo;
     Date fechacosecha;
     String nombreCampoCultivo;
     double cantidadKilos;
     double precioPorKilo;
+    public static int idCosecha = 99999;
 
     public Cosecha() {
     }
 
     public Cosecha(String tipoCultivo, int idCosecha, Date fechacultivo, Date fechacosecha, String nombreCampoCultivo, double cantidadKilos, double precioPorKilo) {
         this.tipoCultivo = tipoCultivo;
-        this.idCosecha = idCosecha;
         this.fechacultivo = fechacultivo;
         this.fechacosecha = fechacosecha;
         this.nombreCampoCultivo = nombreCampoCultivo;
         this.cantidadKilos = cantidadKilos;
-        this.precioPorKilo = precioPorKilo;
+        Cosecha.idCosecha=Cosecha.idCosecha+1;
     }
 
     public String getTipoCultivo() {
@@ -45,8 +45,8 @@ public class Cosecha {
         return idCosecha;
     }
 
-    public void setIdCosecha(int idCosecha) {
-        this.idCosecha = idCosecha;
+    public static void setIdCosecha(int idCosecha) {
+        Cosecha.idCosecha=idCosecha;
     }
 
     public Date getFechacultivo() {
