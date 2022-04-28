@@ -39,7 +39,7 @@ public class OrganiTerra {
                 ListaDoblementeEnlazadaCamposCultivo listaCultivos = new ListaDoblementeEnlazadaCamposCultivo();
                 CampoCultivo campito = null;
                 int eleccionAdministrarCampo =0;
-                
+                int idCosecha = 10000;
 
         do{
             try{
@@ -381,12 +381,7 @@ public class OrganiTerra {
                                             }else{
                                                 cosasQueHacenFaltaParaSembrar=cosasQueHacenFaltaParaSembrar+"++Hay mal nivel de humedad de la tierra, es menor de 85, debe tener un valor superior a 85\n";
                                             }
-                                            
-
-                                            //me falta PH
-                                            
-                                            
-                                            
+                                             
                                             //cuando tenga todos estos voy a hacer un if que permita sembrar si se cumplen todas estas condiciones
                                             System.out.println("\n\nIf para poder Sembrar"
                                                     + "noTieneMalaHumedad(true)= " +noTieneMalaHumedad+ "\n"
@@ -400,17 +395,22 @@ public class OrganiTerra {
                                             if ((tieneSistemaAgua&&noHayplagasEnLasEras&&tieneCultivoDefinido&&noHaceFaltaAbono&&noTieneMalaAireacion&&noTieneMalaHumedad)|| bypass){
                                                 JOptionPane.showMessageDialog(null, "Si puede sembrar el cultivo");
                                                 
-                                                //agrego la fecha del dia de hoy a la fecha de la siembra     
-                                
+                                                   
+                                                Cosecha cosechita1 = new Cosecha(idCosecha);//creo una instancia de cosecha y solo le pongo el ID
+                                                campito.setCosechita(cosechita1);//agrego la instancia nueva de cosecha y la inserto a campo
+                                                idCosecha++;//incremento el ID de las cosechas para que cada una sea unica
+                                                campito.getCosechita().setNombreCampoCultivo(campito.getNombreCampoCultivo());
+                                                campito.getCosechita().setIdcampoCultivo(campito.getId());
+                                                
                                                 Calendar fechaDeCosecha= (Calendar)fechaDeHoy.clone();// aca igualo la fechade cosecha de la fecha de hoy con la de la cosecha creando otra instancia para cosecha para despues incrementar los valores de cosecha
                                                 Date dateSetFechaSiembra = fechaDeHoy.getTime(); //aca tomamos el valor de calendar de fecha de Hoy y lo convertimos en Date
-                                                campito.getCosechita().setFechacultivo(dateSetFechaSiembra);//aca asigno el valor de la fecha de siembra
+                                                campito.getCosechita().setFechacultivo(dateSetFechaSiembra);//aca asigno el valor de la fecha de siembra a la cosecha
                                                 
                                                 //agrego la fecha de cosecha al campo de cultivo depende del cultivo sembrado
                                                 //si el cultivo es papa, sandia, melon o zanahoria dura 90 dias ,si no dura 70
                                                 if((campito.getTipoCultivo().equals("Papa"))||(campito.getTipoCultivo().equals("Sandia"))||(campito.getTipoCultivo().equals("Zanahoria"))||(campito.getTipoCultivo().equals("Melon"))){
                                                     
-                                                    fechaDeCosecha.add(Calendar.DATE, 90);// defino la fecha de la cosecha en 90 dias 
+                                                    fechaDeCosecha.add(Calendar.DATE, 90);// defino la fecha de la cosecha en 90 dias a partir de hoy 
 
                                                 }else{
                                                     fechaDeCosecha.add(Calendar.DATE, 70);// defino la fecha de la cosecha en 70 dias
@@ -422,8 +422,8 @@ public class OrganiTerra {
                                                 //agrego el estado de estar sembrado al campo de cultivo
                                                 campito.setEstaSembrado(true);
                                                 //fecha de cosecha puesta
-                                                System.out.println("fecha siembra = " + dateSetFechaSiembra);
-                                                System.out.println("fecha cosecha = " + dateFechaCosecha);
+                                                System.out.println("fecha siembra = " + campito.getCosechita().getFechacultivo());
+                                                System.out.println("fecha cosecha = " + campito.getCosechita().getFechacosecha());
                                                 
                                                 
                                             }else{
@@ -438,13 +438,48 @@ public class OrganiTerra {
                                         case 7:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/6. cosechar
                                             //si la fecha actual es menor que le fecha de la cosecha no se puede cosechar
-                                            Date dateCosecha = campito.getFechaCosecha();//llamamos a la fecha de la cosecha del campo
-                                            Calendar fechaCalendarCosecha=convertDatetoCalendar(dateCosecha);//la convertimos en tipo calendar
+                                            if(campito.isEstaSembrado()){
+                                                Date dateCosecha = campito.getCosechita().getFechacosecha();//llamamos a la fecha de la cosecha del campo
+                                                Calendar fechaCalendarCosecha=convertDatetoCalendar(dateCosecha);//la convertimos en tipo calendar
+                                            
+                                            
                                             
                                             if(fechaDeHoy.after(fechaCalendarCosecha)){
                                                 JOptionPane.showMessageDialog(null, "Si puede cosechar");
+                                                int cantidadKilosCultivo = 0;//inicializa la cantida de kilos a recoger
+                                                Date fechaDeRecogida=fechaDeHoy.getTime();//toma la fecha del dia del que se hace la recogida
+                                                campito.getCosechita().setFechaRecogida(fechaDeRecogida);//guarda el dia donde se hace la recogida
+                                                listitaErasDelCampitoSeleccionado=campito.getListaEras();//agarra referencia al las eras
+                                                campito.getCosechita().setTipoCultivo(campito.getTipoCultivo());//agarra el tipo de cultivo del campo y lo agrega a la cosecha
+                                                
+                                                //si el suelo es arcilloso para papa sandia zanahoria o melon da 50 kilos
+                                                if ((campito.getTipoCultivo().equals("Papa")||campito.getTipoCultivo().equals("Sandia")||campito.getTipoCultivo().equals("Zanahoria")||campito.getTipoCultivo().equals("Melon"))){
+                                                    
+                                                     cantidadKilosCultivo=campito.getListaEras().devolverKilosdeCultivo(1);
+                                                    
+                                                }else{
+                                                    cantidadKilosCultivo=campito.getListaEras().devolverKilosdeCultivo(2);
+                                                }
+                                                campito.getCosechita().setCantidadKilos(cantidadKilosCultivo);
+                                                JOptionPane.showMessageDialog(null, "Estadisticas de la cosecha:\n"
+                                                        + "La cosecha con el ID:{"+campito.getCosechita().getIdCosecha()+"}\n"
+                                                        + "La cosecha se realizo en el campo con el nombre {"+campito.getNombreCampoCultivo()+"}\n"
+                                                        + "La cosecha se realizo en el campo de cultivo con el ID: {"+campito.getId()+"}\n"
+                                                        + "Se recogieron {"+campito.getCosechita().getCantidadKilos()+"}\n"
+                                                        + "Tipo cultivo {"+campito.getCosechita().getTipoCultivo()+"}\n"
+                                                        + "La fecha de siembra fue {"+campito.getCosechita().getFechacultivo()+"}\n"
+                                                        + "La fecha estimada para la cosecha es{"+campito.getCosechita().getFechacosecha()+"}\n"
+                                                        + "La fecha cuando fue recogido es de {"+campito.getCosechita().getFechaRecogida()+"}\n");
+                                                campito.setEstaSembrado(false);//ya la era dejo de estar sembrada
+                                                //
+                                            }else if (campito.isEstaSembrado()){
+                                                JOptionPane.showMessageDialog(null, "Aun debe esperar la cosecha pero ya esta sembrado\n"
+                                                                + "La fecha de hoy es: {"+fechaDeHoy.getTime()+"}\n"
+                                                                + "La fecha de cosecha debe ser mayor a {"+campito.getCosechita().getFechacosecha()+"}");
+                                            }
                                             }else{
-                                                JOptionPane.showMessageDialog(null, "Aun debe esperar X cantidad de dias para la cosecha");// tengo que arreglar lo de X
+                                                JOptionPane.showMessageDialog(null, "no se puede cosechar aun por que no se ha sembrado");
+                            
                                             }
                           
                                         break;
@@ -460,7 +495,7 @@ public class OrganiTerra {
                                         
                                 break;
                                 case 2:
-                                    //2. //MenuPrincipal/3.Administrar cultivos/2.Escanear campo de cultivo y las eras
+                                    //2. //MenuPrincipal /3.Administrar cultivos/2.Escanear campo de cultivo y las eras
                                     //Escanear campo de cultivo para ver si esta vacio
                                     JOptionPane.showMessageDialog(null, "Ha escogido revisar campo de cultivo y las eras");
                                     int selector_deVisualizacion =0;

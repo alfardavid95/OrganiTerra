@@ -16,21 +16,25 @@ public class Cosecha {
 
     Date fechacultivo;
     Date fechacosecha;
+    Date fechaRecogida;
     String nombreCampoCultivo;
-    double cantidadKilos;
+    int  cantidadKilos;
     double precioPorKilo;
-    public static int idCosecha = 99999;
+    public int idCosecha;
+    int IdcampoCultivo;
 
     public Cosecha() {
     }
 
-    public Cosecha(String tipoCultivo, int idCosecha, Date fechacultivo, Date fechacosecha, String nombreCampoCultivo, double cantidadKilos, double precioPorKilo) {
+    public Cosecha(String tipoCultivo, int idCosecha, Date fechacultivo, Date fechacosecha, String nombreCampoCultivo, int  cantidadKilos, double precioPorKilo) {
         this.tipoCultivo = tipoCultivo;
         this.fechacultivo = fechacultivo;
         this.fechacosecha = fechacosecha;
         this.nombreCampoCultivo = nombreCampoCultivo;
         this.cantidadKilos = cantidadKilos;
-        Cosecha.idCosecha=Cosecha.idCosecha+1;
+    }
+    public Cosecha(int idCosecha){
+        this.idCosecha= idCosecha;
     }
 
     public String getTipoCultivo() {
@@ -41,12 +45,30 @@ public class Cosecha {
         this.tipoCultivo = tipoCultivo;
     }
 
+    public int getIdcampoCultivo() {
+        return IdcampoCultivo;
+    }
+
+    public Date getFechaRecogida() {
+        return fechaRecogida;
+    }
+
+    public void setFechaRecogida(Date fechaRecogida) {
+        this.fechaRecogida = fechaRecogida;
+    }
+    
+
+    public void setIdcampoCultivo(int IdcampoCultivo) {
+        this.IdcampoCultivo = IdcampoCultivo;
+    }
+    
+
     public int getIdCosecha() {
         return idCosecha;
     }
 
-    public static void setIdCosecha(int idCosecha) {
-        Cosecha.idCosecha=idCosecha;
+    public void setIdCosecha(int idCosecha) {
+        this.idCosecha=idCosecha;
     }
 
     public Date getFechacultivo() {
@@ -73,11 +95,11 @@ public class Cosecha {
         this.nombreCampoCultivo = nombreCampoCultivo;
     }
 
-    public double getCantidadKilos() {
+    public int getCantidadKilos() {
         return cantidadKilos;
     }
 
-    public void setCantidadKilos(double cantidadKilos) {
+    public void setCantidadKilos(int  cantidadKilos) {
         this.cantidadKilos = cantidadKilos;
     }
 

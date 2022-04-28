@@ -178,6 +178,49 @@ public class ListaCircularSimpleEras {
 
         return noHayPlagas;
     }
+    public int devolverKilosdeCultivo(int identificador){
+        int cantidadKIlosCultivo = 0;
+        
+        NodoEras aux;
+        aux = ultimo.getNext();
+        
+        do {
+            if(1==identificador){//si viene 1 significa que son melon sandia papa o zanahoria
+                System.out.println("identificador de tipo de cultivo por kilo"+ identificador);
+                System.out.println("tipo de suelo:"+ aux.getDato().getTiposuelo()+"\n"
+                                + "cantidad de kilos antes de salir del while "+ cantidadKIlosCultivo);
+                if(aux.getDato().getTiposuelo().equals("arenoso")){
+                    cantidadKIlosCultivo=cantidadKIlosCultivo+21;
+                }else if(aux.getDato().getTiposuelo().equals("arcilloso")){
+                    cantidadKIlosCultivo=cantidadKIlosCultivo+40;
+                }
+                
+            }else{
+                if(aux.getDato().getNivelDehumedad()>=95){
+                    cantidadKIlosCultivo=cantidadKIlosCultivo+42;
+                }else if(aux.getDato().getNivelDehumedad()>=90){
+                    cantidadKIlosCultivo=cantidadKIlosCultivo+25;
+                }
+                else if (aux.getDato().getNivelDehumedad()<90 ){
+                    cantidadKIlosCultivo=cantidadKIlosCultivo+13;
+                }
+            } 
+            System.out.println("Cantidad Kilos Cultivo era "+ cantidadKIlosCultivo);
+            aux=aux.getNext();
+        }while(aux!=ultimo.getNext());
+        
+        return cantidadKIlosCultivo;
+    }
+    
+    /*
+    
+    String tipoSueloDe=listitaErasDelCampitoSeleccionado.ultimo.getNext().getDato().getTiposuelo();
+                                                        if (tipoSueloDe.equals("arenoso")){
+                                                            cantidadKilos+=30;
+                                                        }else if(tipoSueloDe.equals("arcilloso")){
+                                                            cantidadKilos+=50;
+                                                        }
+    */
     
             
     
