@@ -22,10 +22,8 @@ public class CampoCultivo {
     private Date fechaCreacionTerreno;
     //private ListaEnlazadaEras listaEras;
     private int cantidadEras;
-    boolean notienepiedras = false;
     boolean tienedrenaje = false;
     boolean tieneAgua = false;
-    boolean noestaSucio = false;
     int canteras;
     ListaCircularSimpleEras listaEras = new ListaCircularSimpleEras();
     Cosecha cosechita = new Cosecha();
@@ -119,14 +117,6 @@ public class CampoCultivo {
         this.canteras = cantidadEras;
     }
 
-    public boolean isNotienepiedras() {
-        return notienepiedras;
-    }
-
-    public void setNotienepiedras(boolean notienepiedras) {
-        this.notienepiedras = notienepiedras;
-    }
-
     public boolean isTienedrenaje() {
         return tienedrenaje;
     }
@@ -143,13 +133,6 @@ public class CampoCultivo {
         this.tieneAgua = tieneAgua;
     }
 
-    public boolean isNoestaSucio() {
-        return noestaSucio;
-    }
-
-    public void setNoestaSucio(boolean noestaSucio) {
-        this.noestaSucio = noestaSucio;
-    }
 
     public String getTipoCultivo() {
         return tipoCultivo;
