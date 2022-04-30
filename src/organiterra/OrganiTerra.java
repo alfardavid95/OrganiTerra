@@ -45,6 +45,7 @@ public class OrganiTerra {
             try{
             opcionMainMenu=Integer.parseInt(JOptionPane.showInputDialog(""
                     + "Menu Principal:\n"
+                   
                     + "1. Crear campo de cultivo nuevo\n"
                     + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo (sub-menu)\n"
@@ -52,9 +53,12 @@ public class OrganiTerra {
                     + "5. Incrementar la fecha de hoy (Demostracion)\n"
                     + "6. Armario de Herramientas\n"
                     + "7. Mostrar Cola de Cosechas\n"
-                    + "8. Salir de sistema"));}catch(Exception e){opcionMainMenu=0;}
+                    + "8. Empleados\n"
+                    + "9. Salir de sistema"));}catch(Exception e){opcionMainMenu=0;}
             
             switch(opcionMainMenu ){
+                
+                
                 case 1:
                     //Menu Principal/1.Crear campo de cultivo nuevo
                     JOptionPane.showMessageDialog(null,"Ha elegido crear un campo de cultivo");
@@ -336,7 +340,7 @@ public class OrganiTerra {
                                             if(!campito.isEstaSembrado()){
                                                 
                                             
-                                            boolean bypass = true;
+                                            boolean bypass = false;
                                             boolean tieneSistemaAgua =false;
                                             boolean tieneCultivoDefinido= false;
                                             boolean noHayplagasEnLasEras= false;
@@ -638,8 +642,10 @@ public class OrganiTerra {
                     }while(cajaOpcion != 3);
                     //////////////////////////////////////////////////////////////////////////////
                     break;
-                    
+                  ///////////////  
                 case 7:
+                    
+                    
                    if (!MostrarCosecha.ColaVacia()){
                      NodoCosechas cosechha=MostrarCosecha.atiende();
                     
@@ -659,8 +665,17 @@ public class OrganiTerra {
                     
                    
                        break;     
+                 
+                        case 8:
+                            try{
+                            int b=Integer.parseInt(JOptionPane.showInputDialog("Se paga ₡1500 la hora por empleado\n Dijite la cantidad de empleados a los que desea contratar"));
+                            
+                            empleados(1500, b);
+                            }catch(Exception o){JOptionPane.showMessageDialog(null, "Valor ingresado erroneo...");}
                     
-                case 8:
+                    break;
+                    
+                case 9:
                     //5.Salir
                     JOptionPane.showMessageDialog(null, "Cerrando aplicación...");
                     
@@ -671,13 +686,30 @@ public class OrganiTerra {
                 
             }
             
-        }while(opcionMainMenu != 8);
+        }while(opcionMainMenu != 9);
     }
     public static Calendar convertDatetoCalendar(Date d){                                     
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);                                 
         return   cal;
     }
+    
+    public static void empleados(double y,int b){
+     
+        if(b>0){
+        y=y+1500;
+            
+            
+        empleados(y,b-1);
+            }else{
+            y=y-1500;
+            JOptionPane.showMessageDialog(null,"Total a Pagar por hora a los empleados:  ₡"+y);}
+        
+    }
+     
+        
+        
+    
         
 }
     
