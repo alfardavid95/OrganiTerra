@@ -13,13 +13,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import ObjetosAUsar.*;
 import Estructuras.*;
+import Nodos.NodoArmarioHerramientas;
 import java.lang.invoke.MethodHandles;
-/**
- *
- * @author alfar
- */
-//andrey
-///probando cambios
+
+
 public class OrganiTerra {
 
     /**
@@ -37,6 +34,7 @@ public class OrganiTerra {
                 String nombreCampoCultivo;
                 int idCultivo=1000;
                 ListaDoblementeEnlazadaCamposCultivo listaCultivos = new ListaDoblementeEnlazadaCamposCultivo();
+                PilaArmarioHerramientas armario = new PilaArmarioHerramientas();
                 CampoCultivo campito = null;
                 int eleccionAdministrarCampo =0;
                 int idCosecha = 10000;
@@ -49,8 +47,10 @@ public class OrganiTerra {
                     + "2. Verificar informacion general de campos de cultivo \n"//aca muestra en una lista enlazada 
                     + "3. Admistrar campo de cultivo (sub-menu)\n"
                     + "4. Eliminar campo de cultivo\n"
-                    + "5. Incrementar la fecha dee hoy (esto es para hacer una demostracion)\n"
-                    + "6. Salir\n"));}catch(Exception e){opcionMainMenu=0;}
+                    + "5. Incrementar la fecha de hoy (Demostracion)\n"
+                    + "6. Armario de Herramientas\n"
+                    + "7. Citas de Turismo\n"
+                    + "8. Salir de sistema"));}catch(Exception e){opcionMainMenu=0;}
             
             switch(opcionMainMenu ){
                 case 1:
@@ -73,9 +73,9 @@ public class OrganiTerra {
                     
                     
                     JOptionPane.showMessageDialog(null, "El campo de cultivo creado es:\n"
-                            + "nombre: {"+campitoCultivo.getNombreCampoCultivo()+"}\n"
-                                    + "id: {"+campitoCultivo.getId()+"}\n"
-                                            + "cantidad de eras: {"+campitoCultivo.getCantidadEras()+"}");
+                            + "Nombre: {"+campitoCultivo.getNombreCampoCultivo()+"}\n"
+                                    + "ID: {"+campitoCultivo.getId()+"}\n"
+                                            + "Cantidad de eras: {"+campitoCultivo.getCantidadEras()+"}");
                     break; 
                     
                 case 2:
@@ -197,7 +197,7 @@ public class OrganiTerra {
                                             }   
                     
                                             if (!tipoCultivo.equals("default")){
-                                                JOptionPane.showMessageDialog(null, "ha elegido el cultivo que desea cultivar: {"+tipoCultivo+"}");
+                                                JOptionPane.showMessageDialog(null, "Ha elegido el cultivo que desea cultivar: {"+tipoCultivo+"}");
                                                 campito.setTipoCultivo(tipoCultivo);
                                                 listaCultivos.SobreescribirDatoEnLista(campito);
                                             }else{
@@ -215,7 +215,7 @@ public class OrganiTerra {
                                         case 3:
                                             //MenuPrincipal/3.Administrar cultivos/1. Ejecutar cambios a las Eras y Terreno(submenu)/3. abonar el terreno(submenu)
                                             int sleccionMineralaAbonar=0;
-                                            JOptionPane.showMessageDialog(null, "va a entrar al submenu de abonos para incrementar minerales");
+                                            JOptionPane.showMessageDialog(null, "Va a entrar al submenu de abonos para incrementar minerales");
                                             do{
                                                 try{
                                                     sleccionMineralaAbonar=Integer.parseInt(JOptionPane.showInputDialog("Seleccione el mineral que desea incrementar la concentracion\n"
@@ -238,7 +238,7 @@ public class OrganiTerra {
                                             
                                             
                                             int selectorPesticida=0;
-                                            JOptionPane.showMessageDialog(null, "va a entrar al submenu de agregar pesticida");
+                                            JOptionPane.showMessageDialog(null, "Va a entrar al submenu de agregar pesticida");
                                             do{
                                                 try{
                                                     selectorPesticida=Integer.parseInt(JOptionPane.showInputDialog("Seleccione el mineral que desea incrementar la concentracion\n"
@@ -249,25 +249,25 @@ public class OrganiTerra {
                                                     }catch(Exception e){selectorPesticida=0;}
                                                     switch(selectorPesticida){
                                                         case 1:
-                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner herbicida antes de ser aplicado a ver si hay hierbas");
+                                                            JOptionPane.showMessageDialog(null, "Esto muestra el estatus actual antes de poner herbicida antes de ser aplicado a ver si hay hierbas");
                                                             listitaErasDelCampitoSeleccionado.mostarLista(2);
-                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner herbicida");
+                                                            JOptionPane.showMessageDialog(null, "Ha seleccionado poner herbicida");
                                                             break;
                                                         case 2:
-                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner fungicida antes de ser aplicado a ver si hay hongos");
+                                                            JOptionPane.showMessageDialog(null, "Esto muestra el estatus actual antes de poner fungicida antes de ser aplicado a ver si hay hongos");
                                                             listitaErasDelCampitoSeleccionado.mostarLista(2);
-                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner fungicida");
+                                                            JOptionPane.showMessageDialog(null, "Ha seleccionado poner fungicida");
                                                             break;
                                                         case 3:
-                                                            JOptionPane.showMessageDialog(null, "esto muestra el estatus actual antes de poner insecticida antes de ser aplicado a ver si hay bichos");
+                                                            JOptionPane.showMessageDialog(null, "Esto muestra el estatus actual antes de poner insecticida antes de ser aplicado a ver si hay bichos");
                                                             listitaErasDelCampitoSeleccionado.mostarLista(2);
-                                                            JOptionPane.showMessageDialog(null, "ha seleccionado poner insecticida");
+                                                            JOptionPane.showMessageDialog(null, "Ha seleccionado poner insecticida");
                                                             break;
                                                         case 4:
-                                                            JOptionPane.showMessageDialog(null, "ha decidido regresar al menu de ejecucion de eras y campos de cultivo");
+                                                            JOptionPane.showMessageDialog(null, "Ha decidido regresar al menu de ejecucion de eras y campos de cultivo");
                                                             break;
                                                         default:
-                                                            JOptionPane.showMessageDialog(null, "digite una opcion valida");
+                                                            JOptionPane.showMessageDialog(null, "Digite una opcion valida");
                                                             break;
                                                     }
                                                     if(selectorPesticida>=1&& selectorPesticida<=3){  
@@ -282,14 +282,14 @@ public class OrganiTerra {
                                             if(campito.isTieneAgua()&&campito.isTienedrenaje()){
                                                 listitaErasDelCampitoSeleccionado.agregarAgua();
                                             }else{
-                                                JOptionPane.showMessageDialog(null, "necesita poner un flujo de agua y drenaje en este campo."
+                                                JOptionPane.showMessageDialog(null, "Necesita poner un flujo de agua y drenaje en este campo."
                                                         + "\nDe no ser asi no va a poder incrementar la humedad.");
                                                 int selectoragua =0;
                                                 do{
                                                     try{
                                                 selectoragua=Integer.parseInt(JOptionPane.showInputDialog("Desea conectar las fuentes de agua\n"
-                                                        + "1.poner drenaje\n"
-                                                        + "2.poner fuente de agua\n"
+                                                        + "1.Poner drenaje\n"
+                                                        + "2.Poner fuente de agua\n"
                                                         + "3.Mostrar estado del agua y drenaje en el campo\n"
                                                         + "4.Agregar humedad a las eras\n"
                                                         + "5.Salir al menu de ejecucion de cambios de Eras y Campo de cultivo\n"));
@@ -304,7 +304,7 @@ public class OrganiTerra {
                                                         campito.setTieneAgua(true);
                                                     break;
                                                     case 3:
-                                                        JOptionPane.showMessageDialog(null, "Estatus del agua en el campo {"+campito.getNombreCampoCultivo()+"} con el id {"+campito.getId()+"}\n"
+                                                        JOptionPane.showMessageDialog(null, "Estatus del agua en el campo {"+campito.getNombreCampoCultivo()+"} con el ID {"+campito.getId()+"}\n"
                                                                 + "Tiene drenaje ["+campito.isTienedrenaje()+"]\n"
                                                                 + "Tiene agua ["+campito.isTieneAgua()+"]");
                                                     break;
@@ -312,7 +312,7 @@ public class OrganiTerra {
                                                         if (campito.isTieneAgua()&&campito.isTienedrenaje()){
                                                             listitaErasDelCampitoSeleccionado.agregarAgua();
                                                         }else{
-                                                            JOptionPane.showMessageDialog(null, "necesita poner un flujo de agua y drenaje en este campo."
+                                                            JOptionPane.showMessageDialog(null, "Necesita poner un flujo de agua y drenaje en este campo."
                                                         + "\nDe no ser asi no va a poder incrementar la humedad.");
                                                         }
                                                     break;
@@ -320,7 +320,7 @@ public class OrganiTerra {
                                                         JOptionPane.showMessageDialog(null, "Salir al menu de seleccion de ejecucion de cambio de eras y campos de cultivo");
                                                     break;
                                                     default:
-                                                        JOptionPane.showMessageDialog(null, "digite una opcion valida de seleccion de agua");
+                                                        JOptionPane.showMessageDialog(null, "Digite una opcion valida de seleccion de agua");
                                                     break;
                                                 }
                                                 
@@ -427,7 +427,7 @@ public class OrganiTerra {
                                                 
                                                 
                                             }else{
-                                                JOptionPane.showMessageDialog(null, "Aun no puede sembrar"
+                                                JOptionPane.showMessageDialog(null, "Aun no puede sembrar\n"
                                                         + "Revisiones que hacer antes de sembrar:\n"
                                                         + cosasQueHacenFaltaParaSembrar);
                                             }
@@ -470,6 +470,7 @@ public class OrganiTerra {
                                                         + "La fecha de siembra fue {"+campito.getCosechita().getFechacultivo()+"}\n"
                                                         + "La fecha estimada para la cosecha es{"+campito.getCosechita().getFechacosecha()+"}\n"
                                                         + "La fecha cuando fue recogido es de {"+campito.getCosechita().getFechaRecogida()+"}\n");
+                                                        
                                                 campito.setEstaSembrado(false);//ya la era dejo de estar sembrada
                                                 //
                                             }else if (campito.isEstaSembrado()){
@@ -478,7 +479,7 @@ public class OrganiTerra {
                                                                 + "La fecha de cosecha debe ser mayor a {"+campito.getCosechita().getFechacosecha()+"}");
                                             }
                                             }else{
-                                                JOptionPane.showMessageDialog(null, "no se puede cosechar aun por que no se ha sembrado");
+                                                JOptionPane.showMessageDialog(null, "No se puede cosechar aun por que no se ha sembrado...");
                             
                                             }
                           
@@ -524,10 +525,10 @@ public class OrganiTerra {
                                                                 + "ID del campo de cultivo: [" + campito.getId()+"]\n"
                                                                 + "Tipo de cultivo:["+campito.getTipoCultivo()+"] \n";
                                                         if(campito.isEstaSembrado()){
-                                                            mostarInfo= mostarInfo + "fecha de siembra ["+campito.getCosechita().getFechacultivo()+"]\n"
-                                                                + "fecha de cosecha ["+campito.getCosechita().getFechacosecha()+"]\n";
+                                                            mostarInfo= mostarInfo + "Fecha de siembra ["+campito.getCosechita().getFechacultivo()+"]\n"
+                                                                + "Fecha de cosecha ["+campito.getCosechita().getFechacosecha()+"]\n";
                                                         }
-                                                        mostarInfo=mostarInfo+"esta sembrado: ["+campito.isEstaSembrado()+"]\n";
+                                                        mostarInfo=mostarInfo+"Esta sembrado: ["+campito.isEstaSembrado()+"]\n";
                                                         
                                                         JOptionPane.showMessageDialog(null, mostarInfo);
                                                         break;
@@ -546,7 +547,7 @@ public class OrganiTerra {
                             
                                 case 3:
                                 ////MenuPrincipal/3.Administrar cultivos/3. csalir al menu principal
-                                    JOptionPane.showMessageDialog(null, "salir al menu principal");
+                                    JOptionPane.showMessageDialog(null, "Salir al menu principal");
                                 break;
                                 
                                 default:
@@ -562,13 +563,13 @@ public class OrganiTerra {
                     
                         }else{
                             JOptionPane.showMessageDialog(null, "El campo con ese ID  que busca no existe...\n"
-                            + "salir al menu principal");
+                            + "Salir al menu principal");
                             
                         }
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Lista de campos de cultivo esta vacia\n"
-                        + "salir al menu principal");
+                        + "Salir al menu principal");
                     }
                         
                     break;
@@ -588,15 +589,88 @@ public class OrganiTerra {
                     break;
                 case 5:
                     Date fechaDateHoy=fechaDeHoy.getTime();
-                    JOptionPane.showMessageDialog(null, "fecha de hoy antes del cambio: " +fechaDateHoy);
-                    int diasAIncrementar=Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de dias que va a incrementar"));
+                    
+                    JOptionPane.showMessageDialog(null, "Fecha de hoy antes del cambio: " +fechaDateHoy);
+                    int diasAIncrementar;
+                    do{
+                    diasAIncrementar=Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de dias que va a incrementar"));
+                    if(diasAIncrementar < 1){JOptionPane.showMessageDialog(null, "Valor no valido...");}}while(diasAIncrementar <1);
+                    
                     fechaDeHoy.add(Calendar.DATE, diasAIncrementar);
                     fechaDateHoy=fechaDeHoy.getTime();
-                    JOptionPane.showMessageDialog(null, "fecha de hoy despues del cambio: " +fechaDateHoy);
+                    JOptionPane.showMessageDialog(null, "Fecha de hoy despues del cambio: " +fechaDateHoy);
                     break;
                 case 6:
+                    int cajaOpcion=0;
+                    do{
+                    do{
+                         try{
+                    cajaOpcion=Integer.parseInt(JOptionPane.showInputDialog(
+                            
+                    "1. Agregar Objeto o Herramienta al Armario\n"+
+                    "2. Sacar ultimo Objeto o Herramienta agregado al Armario\n"+
+                    "3. Atras"));}catch(Exception e){}
+                    
+                    if(cajaOpcion < 1){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
+                    if(cajaOpcion > 3){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
+                    
+                    }while(cajaOpcion <1 || cajaOpcion >3);
+                    /////////////////////////////////////////////////////////////////////////////
+                    
+                    switch (cajaOpcion) {
+                        case 1:
+                            armario.push(new NodoArmarioHerramientas(JOptionPane.showInputDialog("Ingrese Nombre del Objeto/Herramienta que desea agregar")));
+                            JOptionPane.showMessageDialog(null,"Agregado con exito!");
+                            break;
+                        case 2:
+                            
+                            NodoArmarioHerramientas herramienta=armario.pop();
+                            
+                           if(herramienta == null){}else{
+                               
+                            JOptionPane.showMessageDialog(null,"    >>> Objeto sacado del armario <<<\n\n"
+                            +"        🡆🡆 "+herramienta.getObjeto()+" ");}
+                            
+                    }
+                    }while(cajaOpcion != 3);
+                    //////////////////////////////////////////////////////////////////////////////
+                    break;
+                    
+                case 7:
+                    int opcionTurismo=0;
+                    do{
+                    do{
+                        try{
+                    opcionTurismo=Integer.parseInt(JOptionPane.showInputDialog(
+                            
+                    "1. Agregar Objeto o Herramienta al Armario\n"+
+                    "2. Sacar ultimo Objeto o Herramienta agregado al Armario\n"+
+                    "3. Atras"));}catch(Exception e){}
+                    
+                    if(opcionTurismo < 1){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
+                    if(opcionTurismo > 3){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
+                    
+                    }while(opcionTurismo <1 || opcionTurismo >3);
+                    
+                    
+                    
+                    
+                    
+                    switch (opcionTurismo) {
+                        case 1:
+                            
+                            break;
+                        case 2:
+                            
+                           
+                            break;
+                    }}while(opcionTurismo != 3);
+                            
+                    
+                case 8:
                     //5.Salir
                     JOptionPane.showMessageDialog(null, "Cerrando aplicación...");
+                    
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, " Digite alguna opcion valida");
@@ -604,7 +678,7 @@ public class OrganiTerra {
                 
             }
             
-        }while(opcionMainMenu != 6);
+        }while(opcionMainMenu != 8);
     }
     public static Calendar convertDatetoCalendar(Date d){                                     
         Calendar cal = Calendar.getInstance();
