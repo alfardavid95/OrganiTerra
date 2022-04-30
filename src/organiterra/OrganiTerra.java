@@ -655,7 +655,7 @@ public class OrganiTerra {
                     
                     
                               
-                   }
+                   }else{JOptionPane.showMessageDialog(null, "No hay cosechas en la cola...");}
                     
                    
                        break;     
