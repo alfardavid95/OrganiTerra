@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import ObjetosAUsar.*;
 import Estructuras.*;
 import Nodos.NodoArmarioHerramientas;
+import Nodos.NodoCosechas;
 import java.lang.invoke.MethodHandles;
 
 
@@ -35,6 +36,7 @@ public class OrganiTerra {
                 int idCultivo=1000;
                 ListaDoblementeEnlazadaCamposCultivo listaCultivos = new ListaDoblementeEnlazadaCamposCultivo();
                 PilaArmarioHerramientas armario = new PilaArmarioHerramientas();
+                ColaCosechas MostrarCosecha = new ColaCosechas();
                 CampoCultivo campito = null;
                 int eleccionAdministrarCampo =0;
                 int idCosecha = 10000;
@@ -49,7 +51,7 @@ public class OrganiTerra {
                     + "4. Eliminar campo de cultivo\n"
                     + "5. Incrementar la fecha de hoy (Demostracion)\n"
                     + "6. Armario de Herramientas\n"
-                    + "7. Citas de Turismo\n"
+                    + "7. Mostrar Cola de Cosechas\n"
                     + "8. Salir de sistema"));}catch(Exception e){opcionMainMenu=0;}
             
             switch(opcionMainMenu ){
@@ -470,7 +472,8 @@ public class OrganiTerra {
                                                         + "La fecha de siembra fue {"+campito.getCosechita().getFechacultivo()+"}\n"
                                                         + "La fecha estimada para la cosecha es{"+campito.getCosechita().getFechacosecha()+"}\n"
                                                         + "La fecha cuando fue recogido es de {"+campito.getCosechita().getFechaRecogida()+"}\n");
-                                                        
+                                                
+                                                      MostrarCosecha.enCola(new NodoCosechas(campito.getCosechita()));
                                                 campito.setEstaSembrado(false);//ya la era dejo de estar sembrada
                                                 //
                                             }else if (campito.isEstaSembrado()){
@@ -637,35 +640,25 @@ public class OrganiTerra {
                     break;
                     
                 case 7:
-                    int opcionTurismo=0;
-                    do{
-                    do{
-                        try{
-                    opcionTurismo=Integer.parseInt(JOptionPane.showInputDialog(
-                            
-                    "1. Agregar Objeto o Herramienta al Armario\n"+
-                    "2. Sacar ultimo Objeto o Herramienta agregado al Armario\n"+
-                    "3. Atras"));}catch(Exception e){}
+                   if (!MostrarCosecha.ColaVacia()){
+                     NodoCosechas cosechha=MostrarCosecha.atiende();
                     
-                    if(opcionTurismo < 1){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
-                    if(opcionTurismo > 3){JOptionPane.showMessageDialog(null, "Elija una opcion validad...");}
-                    
-                    }while(opcionTurismo <1 || opcionTurismo >3);
+                    JOptionPane.showMessageDialog(null, "Estadisticas de la cosecha:\n"
+                                                        + "La cosecha con el ID:{"+cosechha.getCosechita().getIdCosecha()+"}\n"
+                                                        + "La cosecha se realizo en el campo con el nombre {"+cosechha.getCosechita().getNombreCampoCultivo()+"}\n"
+                                                        + "La cosecha se realizo en el campo de cultivo con el ID: {"+cosechha.getCosechita().getIdcampoCultivo()+"}\n"
+                                                        + "Se recogieron {"+cosechha.getCosechita().getCantidadKilos()+"}\n"
+                                                        + "Tipo cultivo {"+campito.getCosechita().getTipoCultivo()+"}\n"
+                                                        + "La fecha de siembra fue {"+cosechha.getCosechita().getFechacultivo()+"}\n"
+                                                        + "La fecha estimada para la cosecha es{"+cosechha.getCosechita().getFechacosecha()+"}\n"
+                                                        + "La fecha cuando fue recogido es de {"+cosechha.getCosechita().getFechaRecogida()+"}\n");
                     
                     
+                              
+                   }
                     
-                    
-                    
-                    switch (opcionTurismo) {
-                        case 1:
-                            
-                            break;
-                        case 2:
-                            
-                           
-                            break;
-                    }}while(opcionTurismo != 3);
-                            
+                   
+                       break;     
                     
                 case 8:
                     //5.Salir

@@ -1,17 +1,17 @@
 
 package Estructuras;
 
-import Nodos.NodoCitaTurista;
+import Nodos.NodoCosechas;
 
 
 
 
-public class ColaCitaTurista {
+public class ColaCosechas {
     
-    private NodoCitaTurista frente;
-    private NodoCitaTurista ultimo;
+    private NodoCosechas frente;
+    private NodoCosechas ultimo;
     
-    public void enCola(NodoCitaTurista NewElement0){
+    public void enCola(NodoCosechas NewElement0){
         
         if(frente==null){
         frente=NewElement0;
@@ -21,9 +21,9 @@ public class ColaCitaTurista {
         ultimo=NewElement0;}
     }
  //////////////////////////////////////////////////////////////////   
-    public NodoCitaTurista atiende(){
+    public NodoCosechas atiende(){
 
-NodoCitaTurista aux= frente;
+NodoCosechas aux= frente;
 
 if (frente!=null){
     if(frente==ultimo){ultimo=null;}
